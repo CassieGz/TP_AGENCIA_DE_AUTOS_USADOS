@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,16 +30,27 @@ namespace SistemaGestion
 
         public Vehiculo(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones)
         {
-
+            this.Id_Vehiculo = id_vehiculo;
+            this.Patente = patente;
+            this.Kilometro = kilometro;
+            this.Anio = anio;
+            this.Id_Marca = id_marca;
+            this.Modelo = modelo;
+            this.Id_segmento = id_segmento;
+            this.Id_combustible = id_combustible;
+            this.Precio_vta = precio_vta;
+            this.Tobservaciones = t_observaciones;
+            this.Observaciones = observaciones;
         }
 
-        // volante 
-        //codigo ascii
-        // bienvenido 
+     
 
 
         //
+        
         public abstract void Marca();
+
+
         //
         public int Id_Vehiculo
         {
@@ -89,6 +101,11 @@ namespace SistemaGestion
         {
             get { return this.precio_vta; }
             set { this.precio_vta = value; }
+        }
+        public bool Tobservaciones
+        {
+            get { return this.t_observaciones; }
+            set { this.t_observaciones = value; }   
         }
         public string Observaciones
         {
