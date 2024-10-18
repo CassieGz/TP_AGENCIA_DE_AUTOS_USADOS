@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using system;
+using system.collections.generic;
+using system.linq;
+using system.text;
+using system.threading.tasks;
 
-namespace SistemaGestion
+namespace sistemagestion
 {
-    internal class Auto_Camioneta : Vehiculo
+    internal class auto_camioneta : vehiculo
     {
-        //
-        public override void Marca()
+
+        public override void marca()
         {
 
         }

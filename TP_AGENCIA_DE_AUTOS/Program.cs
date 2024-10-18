@@ -304,8 +304,20 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("\nSeleccionaste " + SubMenuParametricas[posicion]);
                             Console.ResetColor();
+
+                            //crud parametricas
+                            //switch (SubMenuParametricas[i]){
+                            //    case "Marcas":
+                            //    //MostrarCrudMarcas
+                            //    case "Segmentos":
+                            //    //MostrarCrudSegmentos
+
+                            //}
+                            
+
+                            }
                             Console.ReadKey();
-                        }
+
                     break;
                 }
 
