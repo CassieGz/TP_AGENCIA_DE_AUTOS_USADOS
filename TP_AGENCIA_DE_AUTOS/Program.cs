@@ -105,7 +105,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ResetColor();   
                             Console.ReadKey();
 
-                            //------------PREGUNTAR SI ESTA BIEN-----------
+
                             //Instancio la clase program para usar métodos
                             Program instanciaProg = new Program();
 
@@ -364,8 +364,6 @@ namespace TP_AGENCIA_DE_AUTOS
                 Console.WriteLine(" "+ saludo);
                 System.Threading.Thread.Sleep(50); 
             }
-
-            Console.ReadKey();
         }
 
     }
