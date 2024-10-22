@@ -105,7 +105,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ResetColor();   
                             Console.ReadKey();
 
-                            //------------PREGUNTAR SI ESTA BIEN-----------
+
                             //Instancio la clase program para usar métodos
                             Program instanciaProg = new Program();
 
@@ -304,8 +304,20 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ForegroundColor = ConsoleColor.Black;
                             Console.WriteLine("\nSeleccionaste " + SubMenuParametricas[posicion]);
                             Console.ResetColor();
+
+                            //crud parametricas
+                            //switch (SubMenuParametricas[i]){
+                            //    case "Marcas":
+                            //    //MostrarCrudMarcas
+                            //    case "Segmentos":
+                            //    //MostrarCrudSegmentos
+
+                            //}
+                            
+
+                            }
                             Console.ReadKey();
-                        }
+
                     break;
                 }
 
@@ -364,8 +376,6 @@ namespace TP_AGENCIA_DE_AUTOS
                 Console.WriteLine(" "+ saludo);
                 System.Threading.Thread.Sleep(50); 
             }
-
-            Console.ReadKey();
         }
 
     }

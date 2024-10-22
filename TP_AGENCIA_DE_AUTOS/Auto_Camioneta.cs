@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace TP_AGENCIA_DE_AUTOS
     internal class Auto_Camioneta : Vehiculo
     {
         
+
         //constructor
         public Auto_Camioneta(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones, string color) : base(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color)
         {
@@ -32,7 +33,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 this.Observaciones = " - ";
             }
             this.Color = color;
-        }
+
 
         //metodo
         public override void MostrarDatos()

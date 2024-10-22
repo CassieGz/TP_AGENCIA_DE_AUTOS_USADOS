@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TP_AGENCIA_DE_AUTOS
+{
+    internal class Moto : Vehiculo
     {
-        internal class Moto : Vehiculo
-        {
-            //prop priv
-            private string cilindrada;
+        //prop priv
+        private string cilindrada;
 
 
             //constr
@@ -40,7 +40,6 @@ namespace TP_AGENCIA_DE_AUTOS
 
             }
 
-
             //metod
             public override void MostrarDatos()
             {
@@ -53,5 +52,7 @@ namespace TP_AGENCIA_DE_AUTOS
                  get { return this.cilindrada; }
                  set { this.cilindrada = value; }
             }
+
         }
     }
+}
