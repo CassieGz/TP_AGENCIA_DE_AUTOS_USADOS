@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SistemaGestion
+namespace TP_AGENCIA_DE_AUTOS
 {
     internal abstract class Vehiculo
     {
@@ -20,15 +20,13 @@ namespace SistemaGestion
         private int id_combustible;
         private float precio_vta;
         private bool t_observaciones;
-        private string observaciones;
-        // validacion if de si es true poder llenar el string else no poder hacerlo
-
+        private string observaciones; // validacion if de si es true poder llenar el string else no poder hacerlo
         private string color;
 
 
-        //
+        //constructor sin sobrecarga, realizado para que no se cree el que tiene por defecto por si las dudas
 
-        public Vehiculo(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones)
+        public Vehiculo(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones, string color)
         {
             this.Id_Vehiculo = id_vehiculo;
             this.Patente = patente;
@@ -40,18 +38,21 @@ namespace SistemaGestion
             this.Id_combustible = id_combustible;
             this.Precio_vta = precio_vta;
             this.Tobservaciones = t_observaciones;
-            this.Observaciones = observaciones;
+            if (this.Tobservaciones)
+            {
+                this.Observaciones = observaciones;
+            }
+            else
+            {
+                this.Observaciones = " - ";
+            }
+            this.Color = color;
         }
 
-     
+        // metodo
+        public abstract void MostrarDatos();
 
-
-        //
-        
-        public abstract void Marca();
-
-
-        //
+        //get set
         public int Id_Vehiculo
         {
             get { return this.id_vehiculo; }
@@ -119,7 +120,7 @@ namespace SistemaGestion
             set { this.color = value; }
         }
 
-        //
+       
 
 
     }
