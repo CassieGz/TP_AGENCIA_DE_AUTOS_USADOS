@@ -46,11 +46,10 @@
     <Compile Include="Auto_Camioneta.cs" />
     <Compile Include="Camion.cs" />
     <Compile Include="Moto.cs" />
-Prog_Segmento
-    <Compile Include="Parametrica.cs" />
 
+    <Compile Include="Parametrica.cs" />
     <Compile Include="Marca.cs" />
-main
+
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Segmento.cs" />
