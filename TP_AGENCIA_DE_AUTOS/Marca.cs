@@ -284,9 +284,9 @@ namespace TP_AGENCIA_DE_AUTOS
        */
 
         //metodo
-        public void MostrarDatos()
+        public void MostrarMarcas()
         {
-            Console.WriteLine($"Id Marca: {this.Id_marca} - Marca: {this.Marc}");
+            Console.WriteLine($"Id Marca: {this.Id_marca} Marca: {this.Marc}");
 
         }
         //get set

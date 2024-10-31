@@ -29,7 +29,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
         //METODOS
 
-        public void MostrarDatosSegmento()
+        public void MostrarSegmentos()
         {
             Console.WriteLine("Id Segmento: [0], Segmento: [1]", this.id_segmento,this.nombreSeg);
         }

@@ -146,7 +146,7 @@ namespace TP_AGENCIA_DE_AUTOS
         //Submenu vehículos, clientes y ventas
         public void MostrarSubMenu(string opcion)// recibo el parámetro enviado
         {
-            string[] CRUD = { "Agregar ", "Actualizar ", "Eliminar ", "Volver\n" };
+            string[] CRUD = { "Agregar ", "Listar ", "Actualizar ", "Eliminar ", "Volver\n" };
             int posicion = 0;
 
             Console.CursorVisible = false;
@@ -227,6 +227,8 @@ namespace TP_AGENCIA_DE_AUTOS
                                         case "Agregar":
                                             //metodoS agregar vehiculo
                                             break;
+                                        case "Listar":
+                                            break;
                                         case "Actualizar":
                                             //metodoS actualizar vehiculo
                                             break;
@@ -243,6 +245,8 @@ namespace TP_AGENCIA_DE_AUTOS
                                     {
                                         case "Agregar":
                                             //metodo agregar de clientes
+                                            break;
+                                        case "Listar":
                                             break;
                                         case "Actualizar":
                                             //metodo actualizar de clientes
@@ -261,6 +265,8 @@ namespace TP_AGENCIA_DE_AUTOS
                                     {
                                         case "Agregar":
                                             //metodo agregar de ventas
+                                            break;
+                                        case "Listar":
                                             break;
                                         case "Actualizar":
                                             //metodo actualizar de ventas
@@ -288,7 +294,7 @@ namespace TP_AGENCIA_DE_AUTOS
         //Submenú Paramétricas
         public void MostrarSubmenuParametricas()
         {
-            string[] SubMenuParametricas = { "Marcas\n", "Segmentos\n", "Combustibles\n", "Volver\n" };
+            string[] SubMenuParametricas = { "Marcas\n", "Segmentos\n", "Combustibles\n","Provincias\n","Localidades\n","Volver\n" };
             int posicion = 0; //posición actual
 
             Console.CursorVisible = false;
@@ -357,6 +363,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
                             string op = SubMenuParametricas[posicion];
                             Program progPara = new Program();
+                            Parametrica parametric = new Parametrica();
 
                             //crud parametrica
                             switch (op)
@@ -368,9 +375,18 @@ namespace TP_AGENCIA_DE_AUTOS
                                     progPara.CrudParametricas(op);
                                     break;
                                 case "Combustibles":
-                                    Parametrica paraMet = new Parametrica();    
-                                    //listar combustibles
+                                    parametric.CargarCombustibles();
+                                    parametric.ListarCombustibles();
                                     break;
+                                case "Provincias":
+                                    parametric.CargarProvincias();
+                                    parametric.ListarProvincias();
+                                    break;
+                                case "Localidades":
+                                    parametric.CargarLocalidades();
+                                    parametric.ListarLocalidades();
+                                    break;
+
                             }
 
 
@@ -388,7 +404,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
         public void CrudParametricas(string eleccion)
         {
-            string[] CRUD_Parametrica = { "Agregar ", "Actualizar ", "Eliminar ", "Volver\n" };
+            string[] CRUD_Parametrica = { "Agregar ", "Listar ", "Actualizar ", "Eliminar ", "Volver\n" };
             int posicion = 0;
 
             Console.CursorVisible = false;
@@ -459,7 +475,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ReadKey();
 
                             string valor = CRUD_Parametrica[posicion];
-                            Parametrica paremetric = new Parametrica();
+                            Parametrica parametric = new Parametrica();
 
                             switch (eleccion)
                             {
@@ -469,10 +485,12 @@ namespace TP_AGENCIA_DE_AUTOS
                                     {
                                         //-----HACER PARA CADA MARCA-----
                                         case "Agregar":
-                                            //metodoS agregar marca
+                                            parametric.AgregarMarca();
+                                            break;
+                                        case "Listar":
                                             break;
                                         case "Actualizar":
-                                            //metodoS actualizar marca
+                                            //metodoS actualizar
                                             break;
                                         case "Eliminar":
                                             //metodoS agregar marca
@@ -487,20 +505,25 @@ namespace TP_AGENCIA_DE_AUTOS
                                     switch (valor)
                                     {
                                         case "Agregar":
-                                            paremetric.AgregarSegmento();
+                                            parametric.AgregarSegmento();
+                                            break;
+                                        case "Listar":
+                                            parametric.CargarSegmentos();
+                                            Segmento seg = new Segmento();
+                                            seg.MostrarSegmentos();
                                             break;
                                         case "Actualizar":
-                                            paremetric.ActualizarSegmento();    
+                                            parametric.ActualizarSegmento();    
                                             break;
                                         case "Eliminar":
-                                            paremetric.EliminarSegmento();  
+                                            parametric.EliminarSegmento();  
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");
                                             break;
                                     }
                                     break;
-
+                                
                             }
 
                         }
