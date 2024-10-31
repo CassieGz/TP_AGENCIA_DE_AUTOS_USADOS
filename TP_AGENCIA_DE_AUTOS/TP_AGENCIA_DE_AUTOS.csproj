@@ -50,6 +50,8 @@
     <Compile Include="Combustible.cs" />
     <Compile Include="Parametrica.cs" />
     <Compile Include="Marca.cs" />
+    <Compile Include="Parametrica.cs" />
+    <Compile Include="Marca.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provincia.cs" />
