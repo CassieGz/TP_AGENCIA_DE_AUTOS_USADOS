@@ -43,12 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <Compile Include="Localidad.cs" />
+    <Compile Include="Combustible.cs" />
+    <Compile Include="Marca.cs" />
+=======
     <Compile Include="Camion.cs" />
     <Compile Include="Localidad.cs" />
     <Compile Include="Combustible.cs" />
     <Compile Include="Parametrica.cs" />
+>>>>>>> 13c5d6249bcd9bdd22c6d615adb4e75f29b98844
     <Compile Include="Parametrica.cs" />
-    <Compile Include="Marca.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provincia.cs" />
@@ -57,15 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="xlsx\AutoCamionetas.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="xlsx\Camiones.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="xlsx\Motos.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

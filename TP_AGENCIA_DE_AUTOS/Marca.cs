@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace TP_AGENCIA_DE_AUTOS
 {
-    
     class Marca
     {
         //prop priv
         private int id_marca;
         private string marc;
-        public  List<Marca> Lista_MarcasAC = new List<Marca>();
+        public List<Marca> Lista_MarcasAC = new List<Marca>();
         public List<Marca> Lista_MarcasMoto = new List<Marca>();
         public List<Marca> Lista_MarcasCamion = new List<Marca>();
 
@@ -23,12 +22,13 @@ namespace TP_AGENCIA_DE_AUTOS
             this.Id_marca = id_marca;
             this.Marc = marc;
         }
+        //------------------------MARCA----------------------------------
 
         //CRUD
 
         public void CargarMarca()
         {
-            
+
             FileStream Archivo = new FileStream("MarcasAC.xlsx", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
@@ -69,18 +69,18 @@ namespace TP_AGENCIA_DE_AUTOS
             Read.Close();
         }
 
-        public void Grabar(string file,string grabar, List<Marca> vehiculos)
+        public void Grabar(string file, string grabar, List<Marca> marc)
         {
             if (File.Exists(grabar))
             {
-                
+
                 File.Delete(grabar);
             }
 
             FileStream Archivo = new FileStream(file, FileMode.Create);
             StreamWriter Grabar = new StreamWriter(Archivo);
 
-            foreach (Marca item in vehiculos)
+            foreach (Marca item in marc)
             {
                 Grabar.WriteLine($"{Id_marca};{Marc}");
             }
@@ -112,14 +112,14 @@ namespace TP_AGENCIA_DE_AUTOS
             }
         }
 
-   
-        public void Agregar()       
+
+        public void Agregar()
         {
             Console.Clear();
             string respuesta;
             int nuevoId;
             int id_marc;
-          
+
             {
                 Console.WriteLine("Ingrese tipo de vehiculo a agregar la marca: auto, moto o camion.");
                 respuesta = Console.ReadLine();
@@ -129,9 +129,9 @@ namespace TP_AGENCIA_DE_AUTOS
                     Console.WriteLine("Ingrese un tipo de vehiculo valido. Pulse cualquier tecla para continuar.");
                     Console.ReadKey();
                 }
-            } while (respuesta.ToUpper() != "AUTO" && respuesta.ToUpper() != "MOTO" && respuesta.ToUpper() != "CAMION");
+            } while (respuesta.ToUpper() != "AUTO" && respuesta.ToUpper() != "MOTO" && respuesta.ToUpper() != "CAMION") ;
 
-            if(respuesta.ToUpper()== "AUTO")
+            if (respuesta.ToUpper() == "AUTO")
             {
                 nuevoId = (Lista_MarcasAC.Count > 0) ? Lista_MarcasAC[Lista_MarcasAC.Count - 1].Id_marca + 1 : 1;
                 id_marc = nuevoId;
@@ -149,7 +149,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 string nombreMarca = Console.ReadLine();
                 Marca oMarca = new Marca(id_marc, nombreMarca);
                 Lista_MarcasMoto.Add(oMarca);
-                Grabar("MarcasMoto.xlsx", "MarcasMoto.xlsx", Lista_MarcasMoto) ;
+                Grabar("MarcasMoto.xlsx", "MarcasMoto.xlsx", Lista_MarcasMoto);
             }
             if (respuesta.ToUpper() == "CAMION")
             {
@@ -181,7 +181,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
             bool parsear, IdBool;
             int IdAModif;
-            
+
             if (respuesta.ToUpper() == "AUTO")
             {
                 do
@@ -264,27 +264,123 @@ namespace TP_AGENCIA_DE_AUTOS
             }
         }
 
-       /* public void EliminarSegmento()
+        public void Eliminar()
         {
             Console.Clear();
-            Console.WriteLine("\nCRUD - ELIMINAR\n");
-
-            Console.WriteLine("Ingrese el id(código único) del segmento que quiere eliminar");
-
-            int cod_ingresado = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < this.segments.Count; i++)
+            string respuesta;
+            do
             {
-                if (cod_ingresado == this.segments[i].Id_Segmento)
+                Console.WriteLine("Ingrese tipo de  marca de vehiculo a eliminar: auto, moto o camion.");
+                respuesta = Console.ReadLine();
+
+                if (respuesta.ToUpper() != "AUTO" && respuesta.ToUpper() != "MOTO" && respuesta.ToUpper() != "CAMION")
                 {
-                    this.segments.RemoveAt(i);
+                    Console.WriteLine("Ingrese un tipo de vehiculo valido. Pulse cualquier tecla para continuar.");
+                    Console.ReadKey();
                 }
+            } while (respuesta.ToUpper() != "AUTO" && respuesta.ToUpper() != "MOTO" && respuesta.ToUpper() != "CAMION");
+
+            bool rta, IdBool = false;
+            int IdEliminar;
+            if (respuesta.ToUpper() == "AUTO")
+            {
+                do
+                {
+                    Console.WriteLine(" ");
+                    Console.Write("Ingrese el ID del item que desea eliminar: ");
+                    rta = int.TryParse(Console.ReadLine(), out IdEliminar);
+
+
+                    foreach (Marca oM in Lista_MarcasAC)
+                    {
+                        if (oM.Id_marca == IdEliminar)
+                        {
+                            IdBool = true;
+                        }
+                    }
+                    if (!rta)
+                    {
+                        Console.WriteLine("Ingrese un ID existente. Pulse cualquier tecla para continuar.");
+                        Console.ReadKey();
+                    }
+                    else if (!IdBool)
+                    {
+                        Console.WriteLine("Ingrese un ID existente.Pulse cualquier tecla para continuar.");
+                        Console.ReadKey();
+                    }
+
+                } while (!rta || !IdBool);
+                Lista_MarcasAC.RemoveAt(Lista_MarcasAC.FindIndex(i => i.Id_marca == IdEliminar));
+                Marca oMarca = new Marca(0, " - ");
+                oMarca.Grabar("MarcasAC.xlsx", "MarcasAC.xlsx", Lista_MarcasAC);
+            }
+            if (respuesta.ToUpper() == "MOTO")
+            {
+                do
+                {
+                    Console.WriteLine(" ");
+                    Console.Write("Ingrese el ID del item que desea eliminar: ");
+                    rta = int.TryParse(Console.ReadLine(), out IdEliminar);
+
+
+                    foreach (Marca oM in Lista_MarcasAC)
+                    {
+                        if (oM.Id_marca == IdEliminar)
+                        {
+                            IdBool = true;
+                        }
+                    }
+                    if (!rta)
+                    {
+                        Console.WriteLine("Ingrese un ID existente. Pulse cualquier tecla para continuar.");
+                        Console.ReadKey();
+                    }
+                    else if (!IdBool)
+                    {
+                        Console.WriteLine("Ingrese un ID existente.Pulse cualquier tecla para continuar.");
+                        Console.ReadKey();
+                    }
+
+                } while (!rta || !IdBool);
+                Lista_MarcasMoto.RemoveAt(Lista_MarcasMoto.FindIndex(i => i.Id_marca == IdEliminar));
+                Marca oMarca = new Marca(0, " - ");
+                oMarca.Grabar("MarcasMoto.xlsx", "MarcasMoto.xlsx", Lista_MarcasMoto);
+            }
+            if (respuesta.ToUpper() == "CAMION")
+            {
+                do
+                {
+                    Console.WriteLine(" ");
+                    Console.Write("Ingrese el ID del item que desea eliminar: ");
+                    rta = int.TryParse(Console.ReadLine(), out IdEliminar);
+
+
+                    foreach (Marca oM in Lista_MarcasCamion)
+                    {
+                        if (oM.Id_marca == IdEliminar)
+                        {
+                            IdBool = true;
+                        }
+                    }
+                    if (!rta)
+                    {
+                        Console.WriteLine("Ingrese un ID existente. Pulse cualquier tecla para continuar.");
+                        Console.ReadKey();
+                    }
+                    else if (!IdBool)
+                    {
+                        Console.WriteLine("Ingrese un ID existente.Pulse cualquier tecla para continuar.");
+                        Console.ReadKey();
+                    }
+
+                } while (!rta || !IdBool);
+                Lista_MarcasCamion.RemoveAt(Lista_MarcasMoto.FindIndex(i => i.Id_marca == IdEliminar));
+                Marca oMarca = new Marca(0, " - ");
+                oMarca.Grabar("MarcasCamion.xlsx", "MarcasCamion.xlsx", Lista_MarcasCamion);
             }
         }
-       */
 
-        //metodo
-        public void MostrarMarcas()
+            public void MostrarDatos()
         {
             Console.WriteLine($"Id Marca: {this.Id_marca} Marca: {this.Marc}");
 
@@ -303,3 +399,4 @@ namespace TP_AGENCIA_DE_AUTOS
     }
 }
 
+    

@@ -1333,6 +1333,8 @@ namespace TP_AGENCIA_DE_AUTOS
         
 
         //constr
+        
+
         public Moto(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones, string color, string cilindrada) : base(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color)
         {
             this.Id_Vehiculo = id_vehiculo;

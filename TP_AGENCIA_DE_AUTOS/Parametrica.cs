@@ -29,96 +29,6 @@ namespace TP_AGENCIA_DE_AUTOS
         }
 
         //METODOS
-        //-------------------------MARCAS-------------------------
-        public void CargarMarcas()
-        {
-            //FileStream Archivo= new FileStream("")
-        }
-
-        public void ListarMarcas()
-        {
-            Console.WriteLine("\nMARCAS\n");
-            foreach (Marca item in this.marcas)
-            {
-                item.MostrarMarcas();
-            }
-        }
-
-        //CRUD MARCAS
-        //Agregar/carga manual marca
-        public void AgregarMarca()
-        {
-            Console.Clear();
-            Console.WriteLine("\nCRUD - AGREGAR\n");
-            int id_marca;
-            string nombreMarca;
-
-            Console.WriteLine("Ingrese un id o código númerico para la marca a agregar");
-            id_marca = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Ingrese nombre de la marca que desea agregar");
-
-            nombreMarca = Console.ReadLine();
-
-            Marca nuevaMarca = new Marca(id_marca, nombreMarca);
-            this.marcas.Add(nuevaMarca);
-
-        }
-
-        public void ActualizarMarca()
-        {
-            Console.WriteLine("\nCRUD - ACTUALIZAR\n");
-
-            Console.WriteLine("Ingrese el id de la marca que desea modificar");
-
-            int idIngresado = int.Parse(Console.ReadLine());
-            string nombreAct;
-            bool idEncontrado = false;
-
-            foreach (Marca item in this.marcas)
-            {
-                if (idIngresado == item.Id_marca)
-                {
-                    Console.WriteLine("Ingrese el nuevo nombre de la marca que desea actualizar");
-                    nombreAct = Console.ReadLine();
-
-                    item.Marc = nombreAct;
-                    idEncontrado = true;
-
-                }
-
-            }
-
-            if (idEncontrado == true)
-            {
-                FileStream Archivo = new FileStream("MARCAS.xlsx", FileMode.Create);
-                StreamWriter Escribir = new StreamWriter(Archivo);
-
-                foreach (Marca item in this.marcas)
-                {
-                    Escribir.WriteLine(item.Id_marca + " " + item.Marc);
-                }
-            }
-
-        }
-
-        public void EliminarMarca()
-        {
-            Console.Clear();
-            Console.WriteLine("\nCRUD - ELIMINAR\n");
-
-            Console.WriteLine("Ingrese el id(código único) de la marca que quiere eliminar");
-
-            int cod_ingresado = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < this.marcas.Count; i++)
-            {
-                if (cod_ingresado == this.marcas[i].Id_marca)
-                {
-                    this.marcas.RemoveAt(i);
-                }
-            }
-        }
 
         //-------------------------SEGMENTOS-------------------------
         public void CargarSegmentos()
@@ -131,13 +41,13 @@ namespace TP_AGENCIA_DE_AUTOS
                 string cadena = Leer.ReadLine();
                 string[] datos = cadena.Split(',');
                 Segmento Segment = new Segmento(int.Parse(datos[0]), datos[1]);
-                this.segments.Add(Segment); 
+                this.segments.Add(Segment);
             }
 
             for (int i = 0; i < Math.Min(2, this.segments.Count); i++)
             {
-                Console.WriteLine("ID Segmento[0] Segmento",)
-            }   
+                Console.WriteLine("ID Segmento[0] Segmento");
+            }
 
             Archivo.Close();
             Leer.Close();
@@ -262,21 +172,21 @@ namespace TP_AGENCIA_DE_AUTOS
             while (!Leer.EndOfStream)
             {
                 string cadena = Leer.ReadLine();
-                string[]datos = cadena.Split(';');
+                string[] datos = cadena.Split(';');
                 Provincia pcia = new Provincia(int.Parse(datos[0]), datos[1]);
             }
 
-            Archivo.Close();    
-            Leer.Close();   
+            Archivo.Close();
+            Leer.Close();
         }
 
         public void ListarProvincias()
         {
             Console.WriteLine("\nPROVINCIAS\n");
 
-            foreach(Provincia item in this.pcias)
+            foreach (Provincia item in this.pcias)
             {
-                item.MostrarProvincias();   
+                item.MostrarProvincias();
             }
         }
 
@@ -303,12 +213,9 @@ namespace TP_AGENCIA_DE_AUTOS
 
             foreach (Localidad item in this.localidades)
             {
-                item.MostrarLocalidades();  
+                item.MostrarLocalidades();
             }
         }
-
-
-        //PROPIEDADES PUBLICAS
     }
 }
 
