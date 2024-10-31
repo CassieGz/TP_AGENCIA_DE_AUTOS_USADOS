@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,39 +13,44 @@ namespace TP_AGENCIA_DE_AUTOS
     {
         //PROPIEDADES PRIVADAS
         List<Segmento> segments;
+        List<Marca> marcas;
+        List<Combustible> combustibles;
+        List<Provincia> pcias;
+        List<Localidad> localidades;
 
         //CONSTRUCTORES
         public Parametrica()
         {
-            List<Segmento> segmentos = new List<Segmento>();
+            this.segments = new List<Segmento>();
+            this.marcas = new List<Marca>();
+            this.combustibles = new List<Combustible>();
+            this.localidades = new List<Localidad>();
+            this.pcias = new List<Provincia>();
         }
 
         //METODOS
 
-        //SEGMENTO
+        //-------------------------SEGMENTOS-------------------------
         public void CargarSegmentos()
         {
-            FileStream Archivo = new FileStream("segmentos.xlsx", FileMode.Open);
+            FileStream Archivo = new FileStream("SEGMENTOS.xlsx", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
             while (!Leer.EndOfStream)
             {
-                string cadena = Console.ReadLine();
+                string cadena = Leer.ReadLine();
                 string[] datos = cadena.Split(',');
                 Segmento Segment = new Segmento(int.Parse(datos[0]), datos[1]);
+                this.segments.Add(Segment);
+            }
+
+            for (int i = 0; i < Math.Min(2, this.segments.Count); i++)
+            {
+                Console.WriteLine("ID Segmento[0] Segmento");
             }
 
             Archivo.Close();
             Leer.Close();
-        }
-
-        public void GenerarReporte()
-        {
-            Console.WriteLine("\nSEGMENTOS\n");
-            foreach (Segmento Segment in this.segments)
-            {
-                Segment.MostrarDatosSegmento();
-            }
         }
 
         //CRUD Segmento
@@ -68,6 +74,15 @@ namespace TP_AGENCIA_DE_AUTOS
 
         }
 
+        public void ListarSegmento()
+        {
+            Console.WriteLine("\nSEGMENTOS\n");
+            foreach (Segmento Segment in this.segments)
+            {
+                Segment.MostrarSegmentos();
+            }
+        }
+
         public void ActualizarSegmento()
         {
             Console.WriteLine("\nCRUD - ACTUALIZAR\n");
@@ -76,21 +91,21 @@ namespace TP_AGENCIA_DE_AUTOS
 
             int idIngresado = int.Parse(Console.ReadLine());
             string nuevoNombre;
-            bool idEncontrado=false;
+            bool idEncontrado = false;
 
-                foreach (Segmento item in this.segments)
+            foreach (Segmento item in this.segments)
+            {
+                if (idIngresado == item.Id_Segmento)
                 {
-                    if (idIngresado == item.Id_Segmento)
-                    {
-                        Console.WriteLine("Ingrese el nuevo nombre para el segmento");
-                        nuevoNombre = Console.ReadLine();
+                    Console.WriteLine("Ingrese el nuevo nombre para el segmento");
+                    nuevoNombre = Console.ReadLine();
 
-                        item.NombreSeg = nuevoNombre;
-                        idEncontrado = true;   
-                   
-                    }
+                    item.NombreSeg = nuevoNombre;
+                    idEncontrado = true;
 
                 }
+
+            }
 
             if (idEncontrado == true)
             {
@@ -123,6 +138,84 @@ namespace TP_AGENCIA_DE_AUTOS
             }
         }
 
-        //PROPIEDADES PUBLICAS
+        //-------------------------COMBUSTIBLES-------------------------
+        public void CargarCombustibles()
+        {
+            FileStream Archivo = new FileStream("COMBUSTIBLES.xlsx", FileMode.Open);
+            StreamReader Leer = new StreamReader(Archivo);
+
+            while (!Leer.EndOfStream)
+            {
+                string cadena = Leer.ReadLine();
+                string[] datos = cadena.Split(';');
+
+                Combustible combustible = new Combustible(int.Parse(datos[0]), datos[1]);
+            }
+        }
+
+        public void ListarCombustibles()
+        {
+            Console.WriteLine("\nCOMBUSTIBLES\n");
+            foreach (Combustible item in this.combustibles)
+            {
+                item.MostrarCombustibles();
+            }
+        }
+
+        //-------------------------PROVINCIAS-------------------------
+
+        public void CargarProvincias()
+        {
+            FileStream Archivo = new FileStream("PROVINCIAS.xlsx", FileMode.Open);
+            StreamReader Leer = new StreamReader(Archivo);
+
+            while (!Leer.EndOfStream)
+            {
+                string cadena = Leer.ReadLine();
+                string[] datos = cadena.Split(';');
+                Provincia pcia = new Provincia(int.Parse(datos[0]), datos[1]);
+            }
+
+            Archivo.Close();
+            Leer.Close();
+        }
+
+        public void ListarProvincias()
+        {
+            Console.WriteLine("\nPROVINCIAS\n");
+
+            foreach (Provincia item in this.pcias)
+            {
+                item.MostrarProvincias();
+            }
+        }
+
+        //-------------------------LOCALIDADES-------------------------
+        public void CargarLocalidades()
+        {
+            FileStream Archivo = new FileStream("LOCALIDADES.xlsx", FileMode.Open);
+            StreamReader Leer = new StreamReader(Archivo);
+
+            while (!Leer.EndOfStream)
+            {
+                string cadena = Leer.ReadLine();
+                string[] datos = cadena.Split(';');
+                Localidad localidad = new Localidad(int.Parse(datos[0]), datos[1]);
+            }
+
+            Archivo.Close();
+            Leer.Close();
+        }
+
+        public void ListarLocalidades()
+        {
+            Console.WriteLine("\nLOCALIDADES\n");
+
+            foreach (Localidad item in this.localidades)
+            {
+                item.MostrarLocalidades();
+            }
+        }
     }
 }
+
