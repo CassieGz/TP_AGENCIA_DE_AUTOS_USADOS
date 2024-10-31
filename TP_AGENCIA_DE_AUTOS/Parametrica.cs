@@ -128,10 +128,16 @@ namespace TP_AGENCIA_DE_AUTOS
 
             while (!Leer.EndOfStream)
             {
-                string cadena = Console.ReadLine();
+                string cadena = Leer.ReadLine();
                 string[] datos = cadena.Split(',');
                 Segmento Segment = new Segmento(int.Parse(datos[0]), datos[1]);
+                this.segments.Add(Segment); 
             }
+
+            for (int i = 0; i < Math.Min(2, this.segments.Count); i++)
+            {
+                Console.WriteLine("ID Segmento[0] Segmento",)
+            }   
 
             Archivo.Close();
             Leer.Close();
@@ -230,7 +236,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
             while (!Leer.EndOfStream)
             {
-                string cadena = Console.ReadLine();
+                string cadena = Leer.ReadLine();
                 string[] datos = cadena.Split(';');
 
                 Combustible combustible = new Combustible(int.Parse(datos[0]), datos[1]);
@@ -255,7 +261,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
             while (!Leer.EndOfStream)
             {
-                string cadena = Console.ReadLine();
+                string cadena = Leer.ReadLine();
                 string[]datos = cadena.Split(';');
                 Provincia pcia = new Provincia(int.Parse(datos[0]), datos[1]);
             }
@@ -282,7 +288,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
             while (!Leer.EndOfStream)
             {
-                string cadena = Console.ReadLine();
+                string cadena = Leer.ReadLine();
                 string[] datos = cadena.Split(';');
                 Localidad localidad = new Localidad(int.Parse(datos[0]), datos[1]);
             }

@@ -485,12 +485,12 @@ namespace TP_AGENCIA_DE_AUTOS
                                     {
                                         //-----HACER PARA CADA MARCA-----
                                         case "Agregar":
-                                            //metodoS agregar marca
+                                            parametric.AgregarMarca();
                                             break;
                                         case "Listar":
                                             break;
                                         case "Actualizar":
-                                            //metodoS actualizar marca
+                                            //metodoS actualizar
                                             break;
                                         case "Eliminar":
                                             //metodoS agregar marca
