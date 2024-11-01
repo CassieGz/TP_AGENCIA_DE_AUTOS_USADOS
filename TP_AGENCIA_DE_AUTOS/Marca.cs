@@ -29,7 +29,7 @@ namespace TP_AGENCIA_DE_AUTOS
         public void CargarMarca()
         {
 
-            FileStream Archivo = new FileStream("MarcasAC.xlsx", FileMode.Open);
+            FileStream Archivo = new FileStream("MarcasAC.csv", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
             while (!Leer.EndOfStream)
@@ -42,7 +42,7 @@ namespace TP_AGENCIA_DE_AUTOS
             Archivo.Close();
             Leer.Close();
 
-            FileStream Archi = new FileStream("MarcasMoto.xlsx", FileMode.Open);
+            FileStream Archi = new FileStream("MarcasMoto.csv", FileMode.Open);
             StreamReader Lee = new StreamReader(Archi);
 
             while (!Lee.EndOfStream)
@@ -55,7 +55,7 @@ namespace TP_AGENCIA_DE_AUTOS
             Archi.Close();
             Lee.Close();
 
-            FileStream Archiv = new FileStream("MarcasCamion.xlsx", FileMode.Open);
+            FileStream Archiv = new FileStream("MarcasCamion.csv", FileMode.Open);
             StreamReader Read = new StreamReader(Archiv);
 
             while (!Read.EndOfStream)
@@ -139,7 +139,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 string nombreMarca = Console.ReadLine();
                 Marca oMarca = new Marca(id_marc, nombreMarca);
                 Lista_MarcasAC.Add(oMarca);
-                Grabar("MarcasAC.xlsx", "MarcasAC.xlsx", Lista_MarcasAC);
+                Grabar("MarcasAC.csv", "MarcasAC.csv", Lista_MarcasAC);
             }
             if (respuesta.ToUpper() == "MOTO")
             {
@@ -149,7 +149,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 string nombreMarca = Console.ReadLine();
                 Marca oMarca = new Marca(id_marc, nombreMarca);
                 Lista_MarcasMoto.Add(oMarca);
-                Grabar("MarcasMoto.xlsx", "MarcasMoto.xlsx", Lista_MarcasMoto);
+                Grabar("MarcasMoto.csv", "MarcasMoto.csv", Lista_MarcasMoto);
             }
             if (respuesta.ToUpper() == "CAMION")
             {
@@ -159,7 +159,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 string nombreMarca = Console.ReadLine();
                 Marca oMarca = new Marca(id_marc, nombreMarca);
                 Lista_MarcasCamion.Add(oMarca);
-                Grabar("MarcasCamion.xlsx", "MarcasCamion.xlsx", Lista_MarcasCamion);
+                Grabar("MarcasCamion.csv", "MarcasCamion.csv", Lista_MarcasCamion);
             }
 
         }
@@ -206,7 +206,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 Console.WriteLine("Ingrese marca modificada: ");
                 string nuevoNombre = Console.ReadLine();
                 Lista_MarcasAC[Lista_MarcasAC.FindIndex(i => i.Id_marca == IdAModif)].Marc = nuevoNombre;
-                Grabar("MarcasAC.xlsx", "MarcasAC.xlsx", Lista_MarcasAC);
+                Grabar("MarcasAC.csv", "MarcasAC.csv", Lista_MarcasAC);
 
             }
             else if (respuesta.ToUpper() == "MOTO")
@@ -233,7 +233,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 Console.WriteLine("Ingrese marca modificada: ");
                 string nuevoNombre = Console.ReadLine();
                 Lista_MarcasMoto[Lista_MarcasMoto.FindIndex(i => i.Id_marca == IdAModif)].Marc = nuevoNombre;
-                Grabar("MarcasMoto.xlsx", "MarcasMoto.xlsx", Lista_MarcasMoto);
+                Grabar("MarcasMoto.csv", "MarcasMoto.csv", Lista_MarcasMoto);
 
             }
             else if (respuesta.ToUpper() == "CAMION")
@@ -260,7 +260,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 Console.WriteLine("Ingrese marca modificada: ");
                 string nuevoNombre = Console.ReadLine();
                 Lista_MarcasCamion[Lista_MarcasCamion.FindIndex(i => i.Id_marca == IdAModif)].Marc = nuevoNombre;
-                Grabar("MarcasCamion.xlsx", "MarcasCamion.xlsx", Lista_MarcasCamion);
+                Grabar("MarcasCamion.csv", "MarcasCamion.csv", Lista_MarcasCamion);
             }
         }
 
@@ -312,7 +312,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 } while (!rta || !IdBool);
                 Lista_MarcasAC.RemoveAt(Lista_MarcasAC.FindIndex(i => i.Id_marca == IdEliminar));
                 Marca oMarca = new Marca(0, " - ");
-                oMarca.Grabar("MarcasAC.xlsx", "MarcasAC.xlsx", Lista_MarcasAC);
+                oMarca.Grabar("MarcasAC.csv", "MarcasAC.csv", Lista_MarcasAC);
             }
             if (respuesta.ToUpper() == "MOTO")
             {
@@ -344,7 +344,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 } while (!rta || !IdBool);
                 Lista_MarcasMoto.RemoveAt(Lista_MarcasMoto.FindIndex(i => i.Id_marca == IdEliminar));
                 Marca oMarca = new Marca(0, " - ");
-                oMarca.Grabar("MarcasMoto.xlsx", "MarcasMoto.xlsx", Lista_MarcasMoto);
+                oMarca.Grabar("MarcasMoto.csv", "MarcasMoto.csv", Lista_MarcasMoto);
             }
             if (respuesta.ToUpper() == "CAMION")
             {
@@ -376,7 +376,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 } while (!rta || !IdBool);
                 Lista_MarcasCamion.RemoveAt(Lista_MarcasMoto.FindIndex(i => i.Id_marca == IdEliminar));
                 Marca oMarca = new Marca(0, " - ");
-                oMarca.Grabar("MarcasCamion.xlsx", "MarcasCamion.xlsx", Lista_MarcasCamion);
+                oMarca.Grabar("MarcasCamion.csv", "MarcasCamion.csv", Lista_MarcasCamion);
             }
         }
 
