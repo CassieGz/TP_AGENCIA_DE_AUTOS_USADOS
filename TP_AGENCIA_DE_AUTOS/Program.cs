@@ -220,23 +220,16 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ReadKey();
 
                             string valor = CRUD[posicion];
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 02fcdd4d33d09c36849e0bc26f10b5535ea6b83d
-                            Vehiculo oVehiculo = new Vehiculo(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo");
+
                             Ventas ventas =new Ventas();
 
-<<<<<<< HEAD
-=======
+
                             Vehiculo oVehiculo = new Vehiculo(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo");
-                            oVehiculo.Carga();
->>>>>>> da3ed3cb77535bf1a1116fb5e42c7e37dd0f07e8
-=======
+
                             oVehiculo.Carga();
 
->>>>>>> 02fcdd4d33d09c36849e0bc26f10b5535ea6b83d
+
                             switch (opcion)
                             {
                                 case "Vehículos":
@@ -306,7 +299,7 @@ namespace TP_AGENCIA_DE_AUTOS
                                             break;
                                         case "Eliminar":
                                             //metodo eliminar de ventas
-                                           // ventas.EliminarVentas();
+                                           //ventas.EliminarVentas();
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");

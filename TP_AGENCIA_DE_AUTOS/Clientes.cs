@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using system.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -84,6 +85,23 @@ namespace TP_AGENCIA_DE_AUTOS
             get { return this.correo; }
             set { this.correo = value; }
         }
+
+        public void CargarClientes()
+        {
+            FileStream Archivo = new FileStream("clientes.csv", FileMode.Open);
+            StreamReader Leer = new StreamReader(Archivo);
+
+            while (!Leer.EndOfStream)
+            {
+                string cadena = Leer.ReadLine();
+                string[] datos = cadena.Split(',');
+                Clientes cliente = Clientes(datos);
+                listaClientes.Add(cliente);
+            }
+            Archivo.Close();
+            Leer.Close();
+        }
+
         public void Mostrarclientes()
         {
             Console.WriteLine("|===========================================================|");
