@@ -220,8 +220,6 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ReadKey();
 
                             string valor = CRUD[posicion];
-
-
                             Ventas ventas =new Ventas();
 
 
