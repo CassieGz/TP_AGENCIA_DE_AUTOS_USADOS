@@ -33,7 +33,7 @@ namespace TP_AGENCIA_DE_AUTOS
         //-------------------------SEGMENTOS-------------------------
         public void CargarSegmentos()
         {
-            FileStream Archivo = new FileStream("Combustibles.csv", FileMode.Open);
+            FileStream Archivo = new FileStream("Segmentos.csv", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
             bool error;
@@ -44,9 +44,10 @@ namespace TP_AGENCIA_DE_AUTOS
                 string cadena = Leer.ReadLine();
                 string[] datos = cadena.Split(',');
                
-
+                //intenta convertir la primera ubicacion del vector a entero, guarda el rtdo en ignoreMw
                 error = int.TryParse(datos[0], out ignoreMe);
 
+                //si es entero agrega a la lista segmentos. Si no lo ignora
                 if (error)
                 {
                     Segmento Segment = new Segmento(ignoreMe, datos[1]);

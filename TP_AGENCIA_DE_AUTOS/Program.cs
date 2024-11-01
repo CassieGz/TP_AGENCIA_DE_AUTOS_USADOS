@@ -220,9 +220,11 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ReadKey();
 
                             string valor = CRUD[posicion];
+
                             Vehiculo oVehiculo = new Vehiculo(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo");
                             Ventas ventas =new Ventas();
-                            
+
+                            oVehiculo.Carga();
 
                             switch (opcion)
                             {
@@ -500,7 +502,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             switch (eleccion)
                             {
                                 case "Marcas":
-                                    //aca cargar la lista de marcas
+                                    oMarca.CargarMarca();
                                     switch (valor)
                                     {
                                         //-----HACER PARA CADA MARCA-----
