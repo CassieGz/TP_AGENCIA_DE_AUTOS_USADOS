@@ -36,12 +36,22 @@ namespace TP_AGENCIA_DE_AUTOS
             FileStream Archivo = new FileStream("Combustibles.csv", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
+            bool error;
+            int ignoreMe;
+
             while (!Leer.EndOfStream)
             {
                 string cadena = Leer.ReadLine();
                 string[] datos = cadena.Split(',');
-                Segmento Segment = new Segmento(int.Parse(datos[0]), datos[1]);
-                this.segments.Add(Segment);
+               
+
+                error = int.TryParse(datos[0], out ignoreMe);
+
+                if (error)
+                {
+                    Segmento Segment = new Segmento(ignoreMe, datos[1]);
+                    this.segments.Add(Segment);
+                }
             }
             Archivo.Close();
             Leer.Close();

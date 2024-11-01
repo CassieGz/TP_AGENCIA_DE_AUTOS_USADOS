@@ -51,11 +51,11 @@ namespace TP_AGENCIA_DE_AUTOS
             {
                 Console.Clear();
                 Console.ResetColor();
-                Console.WriteLine("┌─────────────────────────────────────────────┐");
-                Console.WriteLine("│ MENU PRINCIPAL                              │");
-                Console.WriteLine("├─────────────────────────────────────────────┤");
-                Console.WriteLine("│ Seleccione una opción con las flechas ↓ y ↑ │");
-                Console.WriteLine("└─────────────────────────────────────────────┘");
+                Console.WriteLine("┌─────────────────────────────────────────────────────┐");
+                Console.WriteLine("│ MENU PRINCIPAL                                      │");
+                Console.WriteLine("├─────────────────────────────────────────────────────┤");
+                Console.WriteLine("│ Seleccione una opción con las flechas ↓ y ↑         │");
+                Console.WriteLine("└─────────────────────────────────────────────────────┘");
 
                 //armado de menu
                 for (int i = 0; i < Menu.Length; i++)
@@ -157,16 +157,16 @@ namespace TP_AGENCIA_DE_AUTOS
             {
                 Console.Clear();
                 Console.ResetColor();
-                Console.WriteLine("┌──────────────────────────────────────────────┐");
-                Console.WriteLine("│ Submenú                                      │");
-                Console.WriteLine("└──────────────────────────────────────────────┘");
+                Console.WriteLine("┌─────────────────────────────────────────────────────┐");
+                Console.WriteLine("│ Submenú                                             │");
+                Console.WriteLine("└─────────────────────────────────────────────────────┘");
                 Console.BackgroundColor = ConsoleColor.DarkCyan;
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(" CRUD " + opcion.ToUpper());
                 Console.ResetColor();
-                Console.WriteLine("┌──────────────────────────────────────────────┐");
-                Console.WriteLine("│ Seleccione una opción con las flechas ← y →  │");
-                Console.WriteLine("└──────────────────────────────────────────────┘");
+                Console.WriteLine("┌─────────────────────────────────────────────────────┐");
+                Console.WriteLine("│ Seleccione una opción con las flechas ← y →         │");
+                Console.WriteLine("└─────────────────────────────────────────────────────┘");
 
                 for (int i = 0; i < CRUD.Length; i++)
                 {
@@ -310,13 +310,11 @@ namespace TP_AGENCIA_DE_AUTOS
             {
                 Console.Clear();
                 Console.ResetColor();
-                Console.WriteLine("┌─────────────────────────────────────────────┐");
-                Console.WriteLine("│ Submenú                                     │");
-                Console.WriteLine("├─────────────────────────────────────────────┤");
-                Console.WriteLine("│ SUBMENÚ PARAMÉTRICAS                        │");
-                Console.WriteLine("├─────────────────────────────────────────────┤");
-                Console.WriteLine("│ Seleccione una opción con las flechas ↓ y ↑ │");
-                Console.WriteLine("└─────────────────────────────────────────────┘");
+                Console.WriteLine("┌─────────────────────────────────────────────────────┐");
+                Console.WriteLine("│ Submenú paramétricas                                │");
+                Console.WriteLine("├─────────────────────────────────────────────────────┤");
+                Console.WriteLine("│ Seleccione una opción con las flechas ↓ y ↑         │");
+                Console.WriteLine("└─────────────────────────────────────────────────────┘");
 
                 //armado de submenu
                 for (int i = 0; i < SubMenuParametricas.Length; i++)
@@ -366,7 +364,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.WriteLine("\nSeleccionaste " + SubMenuParametricas[posicion]);
                             Console.ResetColor();
 
-                            string op = SubMenuParametricas[posicion];
+                            string op = SubMenuParametricas[posicion].Trim();
                             Program progPara = new Program();
                             Parametrica parametric = new Parametrica();
 
@@ -420,16 +418,16 @@ namespace TP_AGENCIA_DE_AUTOS
             {
                 Console.Clear();
                 Console.ResetColor();
-                Console.WriteLine("┌──────────────────────────────────────────────┐");
-                Console.WriteLine("│ Submenú                                      │");
-                Console.WriteLine("└──────────────────────────────────────────────┘");
+                Console.WriteLine("┌─────────────────────────────────────────────────────┐");
+                Console.WriteLine("│ Submenú                                             │");
+                Console.WriteLine("└─────────────────────────────────────────────────────┘");
                 Console.BackgroundColor = ConsoleColor.DarkCyan;
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(" CRUD PARAMÉTRICA " + eleccion.ToUpper());
                 Console.ResetColor();
-                Console.WriteLine("┌──────────────────────────────────────────────┐");
-                Console.WriteLine("│ Seleccione una opción con las flechas ← y →  │");
-                Console.WriteLine("└──────────────────────────────────────────────┘");
+                Console.WriteLine("┌─────────────────────────────────────────────────────┐");
+                Console.WriteLine("│ Seleccione una opción con las flechas ← y →         │");
+                Console.WriteLine("└─────────────────────────────────────────────────────┘");
 
                 for (int i = 0; i < CRUD_Parametrica.Length; i++)
                 {
@@ -479,6 +477,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ResetColor();
                             Console.ReadKey();
 
+                            
                             string valor = CRUD_Parametrica[posicion];
                             Parametrica parametric = new Parametrica();
                             Marca oMarca = new Marca(1, " "); 
