@@ -25,7 +25,7 @@ namespace TP_AGENCIA_DE_AUTOS
         private string observaciones; // validacion if de si es true poder llenar el string else no poder hacerlo
         private string color;
 
-        private List<Vehiculo> Lista_Vehiculo;
+        
         protected List<Moto> Lista_Motos = new List<Moto>();
         protected List<Camion> Lista_Camiones = new List<Camion>();
         protected List<Auto_Camioneta> Lista_AutoCamionetas = new List<Auto_Camioneta>();
@@ -972,8 +972,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 }
             } while (respuesta.ToUpper() != "AUTO" && respuesta.ToUpper() != "MOTO" && respuesta.ToUpper() != "CAMION");
 
-            int nuevoId = (Lista_Vehiculo.Count > 0) ? Lista_Vehiculo[Lista_Vehiculo.Count - 1].id_vehiculo + 1 : 1;
-            int id_vehiculo = nuevoId;
+            
 
             Console.Write("Patente: ");
             string patente = Console.ReadLine();
@@ -1094,6 +1093,9 @@ namespace TP_AGENCIA_DE_AUTOS
 
             if (respuesta.ToUpper() == "CAMION")
             {
+                int nuevoId = (Lista_Camiones.Count > 0) ? Lista_Camiones[Lista_Camiones.Count - 1].id_vehiculo + 1 : 1;
+                int id_vehiculo = nuevoId;
+
                 Console.Write("Tiene caja de carga: ");
                 string rta = Console.ReadLine();
                 while (rta.ToUpper() != "SI" || rta.ToUpper() != "NO")
@@ -1123,6 +1125,8 @@ namespace TP_AGENCIA_DE_AUTOS
             }
             else if (respuesta.ToUpper() == "MOTO")
             {
+                int nuevoId = (Lista_Motos.Count > 0) ? Lista_Motos[Lista_Motos.Count - 1].id_vehiculo + 1 : 1;
+                int id_vehiculo = nuevoId;
                 Console.Write("Cilindrada: ");
                 cilindrada = Console.ReadLine();
                 Moto oMoto = new Moto(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color, cilindrada);
@@ -1132,6 +1136,8 @@ namespace TP_AGENCIA_DE_AUTOS
 
             if (respuesta.ToUpper() == "AUTO")
             {
+                int nuevoId = (Lista_AutoCamionetas.Count > 0) ? Lista_AutoCamionetas[Lista_AutoCamionetas.Count - 1].id_vehiculo + 1 : 1;
+                int id_vehiculo = nuevoId;
                 Auto_Camioneta oAutoCamioneta = new Auto_Camioneta(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color);
                 Lista_AutoCamionetas.Add(oAutoCamioneta);
                 oAutoCamioneta.Grabar();
