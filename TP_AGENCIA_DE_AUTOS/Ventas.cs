@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,6 +81,21 @@ namespace TP_AGENCIA_DE_AUTOS
             get { return (SubTotal - Desc) + Iva; }
            // get { return this.total; }
             //set { this.total = value; }
+        }
+        public void CargarVentas()
+        {
+            FileStream Archivo = new FileStream("ventas.csv", FileMode.Open);
+            StreamReader Leer = new StreamReader(Archivo);
+
+            while (!Leer.EndOfStream)
+            {
+                string cadena = Leer.ReadLine();
+                string[] datos = cadena.Split(',');
+                Ventas ventas = new Ventas();
+                listaVentas.Add(ventas);
+            }
+            Archivo.Close();
+            Leer.Close();
         }
         public void Mostrarventas()
         {
@@ -172,7 +188,6 @@ namespace TP_AGENCIA_DE_AUTOS
             {
                 Console.WriteLine("No se encontró una venta con ese ID de cliente.");
             }
-
         }
         public void listarventas()
         {
