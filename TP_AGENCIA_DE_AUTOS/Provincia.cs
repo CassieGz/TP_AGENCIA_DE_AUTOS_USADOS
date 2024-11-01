@@ -15,25 +15,25 @@ namespace TP_AGENCIA_DE_AUTOS
         //CONSTRUCTORES
         public Provincia()
         {
-            this.id_provincia = 0;
-            this.nombre_provincia = " ";
+            this.Id_Provincia = 0;
+            this.Nombre_Provincia = " ";
         }
 
         public Provincia(int id_pcia,string nombrePro)
         {
-            this.id_provincia=id_pcia;
-            this.nombre_provincia=nombrePro;    
+            this.Id_Provincia=id_pcia;
+            this.Nombre_Provincia=nombrePro;    
         }
 
         //METODOS
         public void MostrarProvincias()
         {
-            Console.WriteLine("id Provincia: [0] Provincia: [1]", this.Id_provincia, this.Nombre_Provincia);
+            Console.WriteLine("id Provincia: {0} Provincia: {1}", this.Id_Provincia, this.Nombre_Provincia);
         }
 
         //PROPIEDADES PUBLICAS
 
-        public int Id_provincia
+        public int Id_Provincia
         {
             get { return this.id_provincia; }
             set { this.id_provincia = value; }
