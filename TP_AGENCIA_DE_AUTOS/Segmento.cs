@@ -17,13 +17,13 @@ namespace TP_AGENCIA_DE_AUTOS
 
         public Segmento()
         {
-            this.id_segmento = 0;
-            this.nombreSeg = " ";
+            this.Id_Segmento = 0;
+            this.NombreSeg = " ";
         }
         public Segmento(int id_Seg,string segmento)
         {
-            this.id_segmento = id_Seg;
-            this.nombreSeg = segmento;  
+            this.Id_Segmento = id_Seg;
+            this.NombreSeg = segmento;  
         }
 
 
@@ -31,7 +31,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
         public void MostrarSegmentos()
         {
-            Console.WriteLine("Id Segmento: [0], Segmento: [1]", this.id_segmento,this.nombreSeg);
+            Console.WriteLine("Id Segmento: {0}, Segmento: {1}", this.Id_Segmento,this.NombreSeg);
         }
 
 

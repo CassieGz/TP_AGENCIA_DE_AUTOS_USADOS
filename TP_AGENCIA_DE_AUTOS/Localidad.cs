@@ -14,21 +14,21 @@ namespace TP_AGENCIA_DE_AUTOS
         //CONSTRUCTORES
         public Localidad()
         {
-            this.id_localidad = 0;
-            this.nombre_localidad = "";
+            this.Id_Localidad = 0;
+            this.Nombre_Localidad = "";
             
         }
 
         public Localidad(int id,string nombre)
         {
-            this.id_localidad= id;
-            this.nombre_localidad= nombre;    
+            this.Id_Localidad= id;
+            this.Nombre_Localidad= nombre;    
         }
 
         //METODOS
         public void MostrarLocalidades()
         {
-            Console.WriteLine("Id Localidad:[0] Localidad:[1]",this.id_localidad,this.Nombre_Localidad);  
+            Console.WriteLine("Id Localidad:{0} Localidad:{1}",this.Id_Localidad,this.Nombre_Localidad);  
         }
 
         //PROPIEDADES PUBLICAS

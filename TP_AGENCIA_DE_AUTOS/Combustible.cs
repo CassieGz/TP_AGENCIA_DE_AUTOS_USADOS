@@ -15,20 +15,20 @@ namespace TP_AGENCIA_DE_AUTOS
         //CONSTRUCTORES
         public Combustible()
         {
-            this.id_combustible = 0;
-            this.nombre_combustible = " ";
+            this.Id_Combustible = 0;
+            this.Nombre_Combustible = " ";
         }
 
         public Combustible(int id, string nombre)
         {
-            this.id_combustible= id;
-            this.nombre_combustible= nombre; 
+            this.Id_Combustible= id;
+            this.Nombre_Combustible= nombre; 
         }
 
         //METODOS
         public void MostrarCombustibles()
         {
-            Console.WriteLine("id Combustible:[0] Combustible: [1]",this.Id_Combustible,this.Nombre_Combustible);
+            Console.WriteLine("id Combustible:{0} Combustible: {1}",this.Id_Combustible,this.Nombre_Combustible);
         }
 
         //PROPIEDADES PUBLICAS
@@ -43,7 +43,7 @@ namespace TP_AGENCIA_DE_AUTOS
         public string Nombre_Combustible
         {
             get { return this.nombre_combustible; }
-            set { this.Nombre_Combustible = value; }
+            set { this.nombre_combustible = value; }
         }
     }
 }
