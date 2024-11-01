@@ -45,16 +45,18 @@ namespace TP_AGENCIA_DE_AUTOS
             }
             Archivo.Close();
             Leer.Close();
+        }
 
+        public void Mostrar3seg()
+        {
             Console.WriteLine("┌─────────────┬───────────────────────────────────┐");
             Console.WriteLine("│ ID          │ SEGMENTO                          │");
             Console.WriteLine("└─────────────┴───────────────────────────────────┘");
-            for (int i = 0; i < Math.Min(2, this.segments.Count); i++)
+            for (int i = 0; i < Math.Min(3, this.segments.Count); i++)
             {
                 Console.WriteLine($"{segments[i].Id_Segmento} {segments[i].NombreSeg}");
             }
 
-           
         }
 
         //CRUD Segmento

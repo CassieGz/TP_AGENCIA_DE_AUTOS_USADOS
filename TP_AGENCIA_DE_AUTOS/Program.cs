@@ -222,6 +222,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             switch (opcion)
                             {
                                 case "Vehículos":
+                                    //aca cargar listas
                                     switch (valor)
                                     {
                                         //-----HACER PARA CADA VEHICULO-----
@@ -243,6 +244,7 @@ namespace TP_AGENCIA_DE_AUTOS
                                     }
                                     break;
                                 case "Clientes":
+                                    //aca cargar lista
                                     switch (valor)
                                     {
                                         case "Agregar":
@@ -263,6 +265,7 @@ namespace TP_AGENCIA_DE_AUTOS
                                     break;
 
                                 case "Ventas":
+                                    //aca cargar lista
                                     switch (valor)
                                     {
                                         case "Agregar":
@@ -482,7 +485,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             switch (eleccion)
                             {
                                 case "Marcas":
-                                    //Instanciar marca
+                                    //aca cargar la lista de marcas
                                     switch (valor)
                                     {
                                         //-----HACER PARA CADA MARCA-----
@@ -504,15 +507,15 @@ namespace TP_AGENCIA_DE_AUTOS
                                     }
                                     break;
                                 case "Segmentos":
-                                     
+                                    parametric.CargarSegmentos();
+                                    Segmento seg = new Segmento();
+                                    parametric.Mostrar3seg();
                                     switch (valor)
                                     {
                                         case "Agregar":
                                             parametric.AgregarSegmento();
                                             break;
                                         case "Listar":
-                                            parametric.CargarSegmentos();
-                                            Segmento seg = new Segmento();
                                             seg.MostrarSegmentos();
                                             break;
                                         case "Actualizar":
