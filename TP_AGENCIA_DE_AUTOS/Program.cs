@@ -217,7 +217,8 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ReadKey();
 
                             string valor = CRUD[posicion];
-
+                            Vehiculo oVehiculo = new Vehiculo(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo");
+                            
                             switch (opcion)
                             {
                                 case "Vehículos":
@@ -225,15 +226,16 @@ namespace TP_AGENCIA_DE_AUTOS
                                     {
                                         //-----HACER PARA CADA VEHICULO-----
                                         case "Agregar":
-                                            //metodoS agregar vehiculo
+                                            oVehiculo.Agregar();
                                             break;
                                         case "Listar":
+                                            oVehiculo.Leer();
                                             break;
                                         case "Actualizar":
-                                            //metodoS actualizar vehiculo
+                                            oVehiculo.Actualizar();
                                             break;
                                         case "Eliminar":
-                                            //metodoS agregar vehiculo
+                                            oVehiculo.Eliminar();
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");
@@ -476,7 +478,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
                             string valor = CRUD_Parametrica[posicion];
                             Parametrica parametric = new Parametrica();
-
+                            Marca oMarca = new Marca(1, " "); 
                             switch (eleccion)
                             {
                                 case "Marcas":
@@ -485,15 +487,16 @@ namespace TP_AGENCIA_DE_AUTOS
                                     {
                                         //-----HACER PARA CADA MARCA-----
                                         case "Agregar":
-                                            parametric.AgregarMarca();
+                                            oMarca.Agregar();
                                             break;
                                         case "Listar":
+                                            oMarca.Leer();
                                             break;
                                         case "Actualizar":
-                                            //metodoS actualizar
+                                            oMarca.Modificar();
                                             break;
                                         case "Eliminar":
-                                            //metodoS agregar marca
+                                            oMarca.Eliminar();
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");
