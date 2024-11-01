@@ -117,9 +117,11 @@ namespace TP_AGENCIA_DE_AUTOS
                                     break;
                                 case "Clientes":
                                     instanciaProg.MostrarSubMenu(Menu[posicion].Trim());
+
                                     break;
                                 case "Ventas":
                                     instanciaProg.MostrarSubMenu(Menu[posicion].Trim());
+                                    
                                     break;
                                 case "Paramétricas":
                                     instanciaProg.MostrarSubmenuParametricas();

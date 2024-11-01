@@ -52,6 +52,7 @@
     <Compile Include="Provincia.cs" />
     <Compile Include="Segmento.cs" />
     <Compile Include="Vehiculo.cs" />
+    <Compile Include="Ventas.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
