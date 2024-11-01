@@ -486,7 +486,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             switch (eleccion)
                             {
                                 case "Marcas":
-                                    //aca cargar la lista de marcas
+                                    oMarca.CargarMarca();
                                     switch (valor)
                                     {
                                         //-----HACER PARA CADA MARCA-----
