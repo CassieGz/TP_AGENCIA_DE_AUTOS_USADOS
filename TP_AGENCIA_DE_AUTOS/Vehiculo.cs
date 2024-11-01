@@ -21,7 +21,7 @@ namespace TP_AGENCIA_DE_AUTOS
         private int id_segmento;
         private int id_combustible;
         private float precio_vta;
-        private bool t_observaciones;
+        private string t_observaciones;
         private string observaciones; // validacion if de si es true poder llenar el string else no poder hacerlo
         private string color;
 
@@ -33,7 +33,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
         //constructor sin sobrecarga, realizado para que no se cree el que tiene por defecto por si las dudas
         //no se puede agregar un elemento de marca.Id_marca porque no funciona el parseo en la carga de datos de archivo 
-        public Vehiculo(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones, string color)
+        public Vehiculo(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, string t_observaciones, string observaciones, string color)
         {
             this.Id_Vehiculo = id_vehiculo;
             this.Patente = patente;
@@ -44,15 +44,17 @@ namespace TP_AGENCIA_DE_AUTOS
             this.Id_segmento = id_segmento;
             this.Id_combustible = id_combustible;
             this.Precio_vta = precio_vta;
-            this.Tobservaciones = t_observaciones;
-            if (this.Tobservaciones)
+            this.Tobservaciones = t_observaciones.ToUpper();
+
+            if (this.Tobservaciones == "SI")
             {
                 this.Observaciones = observaciones;
             }
-            else
+            else if (this.Tobservaciones == "NO")
             {
                 this.Observaciones = " - ";
             }
+
             this.Color = color;
 
         }
@@ -66,51 +68,66 @@ namespace TP_AGENCIA_DE_AUTOS
         //CRUD
         public void Carga()
         {
-            //motos
-            FileStream Archivo = new FileStream("Motos.xlsx", FileMode.Open);
-            StreamReader Leer = new StreamReader(Archivo);
-
-            while (!Leer.EndOfStream)
+            try
             {
-                string cadena = Console.ReadLine();
-                string[] datos = cadena.Split(';');
-                Moto oMoto = new Moto(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), short.Parse(datos[3]), int.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), float.Parse(datos[8]), bool.Parse(datos[9]), datos[10], datos[11], datos[12]);
-                //cargar en lista de motos
-                Lista_Motos.Add(oMoto);
+                //motos
+                FileStream Archivo = new FileStream("Motos.csv", FileMode.Open);
+                StreamReader Leer = new StreamReader(Archivo);
 
+                while (!Leer.EndOfStream)
+                {
+                    string cadena = Leer.ReadLine();
+                    string[] datos = cadena.Split(';');
+
+                    //trim para eliminar el primer y ultimo caracteres o los que se coloquen entre ()
+                    Moto oMoto = new Moto(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), short.Parse(datos[3]), int.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), float.Parse(datos[8]), datos[9], datos[10], datos[11], datos[12]);
+                    //cargar en lista de motos
+                    Lista_Motos.Add(oMoto);
+
+                }
+                Archivo.Close();
+                Leer.Close();
+
+                //autos
+                FileStream Arch = new FileStream("AutoCamionetas.csv", FileMode.Open);
+                StreamReader Lee = new StreamReader(Arch);
+
+                while (!Lee.EndOfStream)
+                {
+                    string cadena = Lee.ReadLine();
+                    string[] datos = cadena.Split(';');
+                    Auto_Camioneta oAutoCam = new Auto_Camioneta(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), short.Parse(datos[3]), int.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), float.Parse(datos[8]), datos[9], datos[10], datos[11]);
+                    Lista_AutoCamionetas.Add(oAutoCam);
+                }
+                Arch.Close();
+                Lee.Close();
+
+
+                //camiones
+                FileStream Archi = new FileStream("Camiones.csv", FileMode.Open);
+                StreamReader Read = new StreamReader(Archi);
+
+                while (!Read.EndOfStream)
+                {
+                    string cadena = Read.ReadLine();
+                    string[] datos = cadena.Split(';');
+                    Camion oCamion = new Camion(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), short.Parse(datos[3]), int.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), float.Parse(datos[8]), datos[9], datos[10], datos[11], datos[12], datos[13], int.Parse(datos[14]));
+                    Lista_Camiones.Add(oCamion);
+                }
+                Archi.Close();
+                Read.Close();
             }
-            Archivo.Close();
-            Leer.Close();
-
-
-            //autos
-            FileStream Arch = new FileStream("AutoCamionetas.xlsx", FileMode.Open);
-            StreamReader Lee = new StreamReader(Arch);
-
-            while (!Lee.EndOfStream)
+            catch (FormatException ex)
             {
-                string cadena = Console.ReadLine();
-                string[] datos = cadena.Split(';');
-                Auto_Camioneta oAutoCam = new Auto_Camioneta(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), short.Parse(datos[3]), int.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), float.Parse(datos[8]), bool.Parse(datos[9]), datos[10], datos[11]);
-                Lista_AutoCamionetas.Add(oAutoCam);
+                Console.WriteLine($"Error.Detalle:{ex} {ex.Message}");
+                Console.ReadKey();
             }
-            Arch.Close();
-            Lee.Close();
-
-
-            //camiones
-            FileStream Archi = new FileStream("Camiones.xlsx", FileMode.Open);
-            StreamReader Read = new StreamReader(Archi);
-
-            while (!Read.EndOfStream)
+            catch(Exception ex)
             {
-                string cadena = Console.ReadLine();
-                string[] datos = cadena.Split(';');
-                Camion oCamion = new Camion(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), short.Parse(datos[3]), int.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), float.Parse(datos[8]), bool.Parse(datos[9]), datos[10], datos[11], bool.Parse(datos[12]), datos[13], int.Parse(datos[14]));
-                Lista_Camiones.Add(oCamion);
+                Console.WriteLine($"{ex}{ex.Message}");
+                Console.ReadKey();
             }
-            Archivo.Close();
-            Leer.Close();
+
 
         }
         public void Leer()
@@ -391,16 +408,16 @@ namespace TP_AGENCIA_DE_AUTOS
                         } while (rta.ToUpper() != "SI" || rta.ToUpper() != "NO");
                         if (rta.ToUpper() == "SI")
                         {
-                            bool tob = true;
-                            Lista_AutoCamionetas[Lista_AutoCamionetas.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = tob;
+                            
+                            Lista_AutoCamionetas[Lista_AutoCamionetas.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = rta;
                             Console.WriteLine("Observacion a realizar: ");
                             string obs = Console.ReadLine();
                             Lista_AutoCamionetas[Lista_AutoCamionetas.FindIndex(i => i.Id_Vehiculo == IdAModif)].Observaciones = obs;
                         }
                         else
                         {
-                            bool tob = false;
-                            Lista_AutoCamionetas[Lista_AutoCamionetas.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = tob;
+                            
+                            Lista_AutoCamionetas[Lista_AutoCamionetas.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = rta;
                             string obs = " - ";
                             Lista_AutoCamionetas[Lista_AutoCamionetas.FindIndex(i => i.Id_Vehiculo == IdAModif)].Observaciones = obs;
                         }
@@ -415,7 +432,7 @@ namespace TP_AGENCIA_DE_AUTOS
                     case 11:
                         break;
                 }
-                Auto_Camioneta oAuto = new Auto_Camioneta(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo");
+                Auto_Camioneta oAuto = new Auto_Camioneta(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo");
                 oAuto.Grabar();
 
                 Grabar();
@@ -644,16 +661,16 @@ namespace TP_AGENCIA_DE_AUTOS
                         } while (rta.ToUpper() != "SI" || rta.ToUpper() != "NO");
                         if (rta.ToUpper() == "SI")
                         {
-                            bool tob = true;
-                            Lista_Motos[Lista_Motos.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = tob;
+                            
+                            Lista_Motos[Lista_Motos.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = rta;
                             Console.WriteLine("Observacion a realizar: ");
                             string obs = Console.ReadLine();
                             Lista_Motos[Lista_Motos.FindIndex(i => i.Id_Vehiculo == IdAModif)].Observaciones = obs;
                         }
                         else
                         {
-                            bool tob = false;
-                            Lista_Motos[Lista_Motos.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = tob;
+                           
+                            Lista_Motos[Lista_Motos.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = rta;
                             string obs = " - ";
                             Lista_Motos[Lista_Motos.FindIndex(i => i.Id_Vehiculo == IdAModif)].Observaciones = obs;
                         }
@@ -678,7 +695,7 @@ namespace TP_AGENCIA_DE_AUTOS
                         break;
 
                 }
-                Moto moto = new Moto(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo", "110");
+                Moto moto = new Moto(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo", "110");
                 moto.Grabar();
             }
 
@@ -859,16 +876,16 @@ namespace TP_AGENCIA_DE_AUTOS
                         } while (rta.ToUpper() != "SI" || rta.ToUpper() != "NO");
                         if (rta.ToUpper() == "SI")
                         {
-                            bool tob = true;
-                            Lista_Camiones[Lista_Camiones.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = tob;
+                            
+                            Lista_Camiones[Lista_Camiones.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = rta;
                             Console.WriteLine("Observacion a realizar: ");
                             string obs = Console.ReadLine();
                             Lista_Camiones[Lista_Camiones.FindIndex(i => i.Id_Vehiculo == IdAModif)].Observaciones = obs;
                         }
                         else
                         {
-                            bool tob = false;
-                            Lista_Camiones[Lista_Camiones.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = tob;
+                            
+                            Lista_Camiones[Lista_Camiones.FindIndex(i => i.Id_Vehiculo == IdAModif)].Tobservaciones = rta;
                             string obs = " - ";
                             Lista_Camiones[Lista_Camiones.FindIndex(i => i.Id_Vehiculo == IdAModif)].Observaciones = obs;
                         }
@@ -934,7 +951,7 @@ namespace TP_AGENCIA_DE_AUTOS
                     case 12:
                         break;
                 }
-                Camion oCamion = new Camion(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo", false, " - ", 0);
+                Camion oCamion = new Camion(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo", "NO", " - ", 0);
                 oCamion.Grabar();
             }
         }
@@ -1024,7 +1041,6 @@ namespace TP_AGENCIA_DE_AUTOS
                     Console.WriteLine("El ID ingresado no es valido. Pulse cualquier tecla para continuar.");
                     Console.ReadKey();
                 }
-                //falta validar datos con los xlsx
             } while (!parsear || !mayor);
 
 
@@ -1040,7 +1056,7 @@ namespace TP_AGENCIA_DE_AUTOS
                     Console.WriteLine("El ID ingresado no es valido. Pulse cualquier tecla para continuar.");
                     Console.ReadKey();
                 }
-                //falta validar datos
+                
             } while (!parsear || !mayor);
 
             float precio_vta;
@@ -1057,22 +1073,21 @@ namespace TP_AGENCIA_DE_AUTOS
                 }
             } while (!parsear || !mayor);
 
-            bool t_observaciones = false;
+            string t_observaciones = "NO";
             string observaciones = " - ";
+
             Console.Write("Tiene observaciones: ");
             Console.ReadLine();
             if (Console.ReadLine().ToUpper() == "SI")
             {
-                t_observaciones = true;
+                t_observaciones = "SI";
                 Console.Write("Observaciones: ");
                 observaciones = Console.ReadLine();
             }
 
             Console.Write("Color: ");
             string color = Console.ReadLine();
-            //
 
-            bool caja_carga = false;
             string dimension_caja = " - ";
             int carga_max = 0;
             string cilindrada;
@@ -1088,7 +1103,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 }
                 if (rta.ToUpper() == "SI")
                 {
-                    caja_carga = true;
+                   
                     Console.Write("Dimension de la caja: ");
                     dimension_caja = Console.ReadLine();
                     do
@@ -1102,7 +1117,7 @@ namespace TP_AGENCIA_DE_AUTOS
                         }
                     } while (!parsear || !mayor);
                 }
-                Camion oCamion = new Camion(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color, caja_carga, dimension_caja, carga_max);
+                Camion oCamion = new Camion(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color, rta , dimension_caja, carga_max);
                 Lista_Camiones.Add(oCamion);
                 oCamion.Grabar();
             }
@@ -1173,7 +1188,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
                 } while (!rta || !IdBool);
                 Lista_AutoCamionetas.RemoveAt(Lista_AutoCamionetas.FindIndex(i => i.Id_Vehiculo == IdEliminar));
-                Auto_Camioneta oAuto= new Auto_Camioneta(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo");
+                Auto_Camioneta oAuto= new Auto_Camioneta(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo");
                 oAuto.Grabar();
             }
             if (respuesta.ToUpper() == "MOTO")
@@ -1205,7 +1220,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
                 } while (!rta || !IdBool);
                 Lista_Motos.RemoveAt(Lista_Motos.FindIndex(i => i.Id_Vehiculo == IdEliminar));
-                Moto oMoto= new Moto(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo","110");
+                Moto oMoto= new Moto(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo","110");
                 oMoto.Grabar();
             }
             if (respuesta.ToUpper() == "CAMION")
@@ -1237,7 +1252,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
                 } while (!rta || !IdBool);
                 Lista_Camiones.RemoveAt(Lista_Camiones.FindIndex(i => i.Id_Vehiculo == IdEliminar));
-                Camion oCamion = new Camion(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo", false, " - ", 0);
+                Camion oCamion = new Camion(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo", "NO", " - ", 0);
                 oCamion.Grabar();
             }
 
@@ -1307,7 +1322,7 @@ namespace TP_AGENCIA_DE_AUTOS
             get { return this.precio_vta; }
             set { this.precio_vta = value; }
         }
-        public bool Tobservaciones
+        public string Tobservaciones
         {
             get { return this.t_observaciones; }
             set { this.t_observaciones = value; }   
@@ -1335,7 +1350,7 @@ namespace TP_AGENCIA_DE_AUTOS
         //constr
         
 
-        public Moto(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones, string color, string cilindrada) : base(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color)
+        public Moto(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, string t_observaciones, string observaciones, string color, string cilindrada) : base(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color)
         {
             this.Id_Vehiculo = id_vehiculo;
             this.Patente = patente;
@@ -1346,16 +1361,17 @@ namespace TP_AGENCIA_DE_AUTOS
             this.Id_segmento = id_segmento;
             this.Id_combustible = id_combustible;
             this.Precio_vta = precio_vta;
-            this.Tobservaciones = t_observaciones;
-            if (this.Tobservaciones)
-            {
-                this.Observaciones = observaciones;
-            }
-            else
-            {
-                this.Observaciones = " - ";
-            }
-            this.Color = color;
+        this.Tobservaciones = t_observaciones.ToUpper();
+
+        if (this.Tobservaciones == "SI")
+        {
+            this.Observaciones = observaciones;
+        }
+        else if (this.Tobservaciones == "NO")
+        {
+            this.Observaciones = " - ";
+        }
+        this.Color = color;
 
             this.Cilindrada = cilindrada;
         }
@@ -1363,21 +1379,21 @@ namespace TP_AGENCIA_DE_AUTOS
         //metod
         public override void MostrarDatos()
         {
-            Console.WriteLine($"Id Vehiculo:{this.Id_Vehiculo} - Patente:{this.Patente} - Kilometro:{this.Kilometro} - Año:{this.Anio} - Id Marca:{this.Id_Marca} - Modelo:{this.Modelo} - Id Segmento:{this.Id_segmento} - Id Combustible:{this.Id_combustible} - Precio de venta:{this.Precio_vta} - Hay observaciones:", this.Tobservaciones ? "Si" : "No", $" - Observaciones:{this.Observaciones} - Color: {this.Color} - Cilindrada:{this.Cilindrada}.");
+            Console.WriteLine($"Id Vehiculo:{this.Id_Vehiculo} - Patente:{this.Patente} - Kilometro:{this.Kilometro} - Año:{this.Anio} - Id Marca:{this.Id_Marca} - Modelo:{this.Modelo} - Id Segmento:{this.Id_segmento} - Id Combustible:{this.Id_combustible} - Precio de venta:{this.Precio_vta} - Hay observaciones: { this.Tobservaciones}  - Observaciones:{this.Observaciones} - Color: {this.Color} - Cilindrada:{this.Cilindrada}.");
         }
 
     public override void Grabar()
     {
-        if (File.Exists("Motos.xlsx"))
+        if (File.Exists("Motos.csv"))
         {
-            File.Delete("Motos.xlsx");
+            File.Delete("Motos.csv");
         }
-        FileStream Archivo = new FileStream("Motos.xlsx", FileMode.Create);
+        FileStream Archivo = new FileStream("Motos.csv", FileMode.Create);
         StreamWriter Grabar = new StreamWriter(Archivo);
         
             foreach (Moto item in Lista_Motos)
             {
-                Grabar.WriteLine($"{this.Id_Vehiculo};{this.Patente};{this.Kilometro};{this.Anio};{this.Id_Marca};{this.Modelo};{this.Id_segmento};{this.Id_combustible};{this.Precio_vta};{this.Tobservaciones};{this.Observaciones};{this.Color}; {this.Cilindrada}");
+                Grabar.WriteLine($"{this.Id_Vehiculo},{this.Patente},{this.Kilometro},{this.Anio},{this.Id_Marca},{this.Modelo},{this.Id_segmento},{this.Id_combustible},{this.Precio_vta},{this.Tobservaciones},{this.Observaciones},{this.Color}, {this.Cilindrada}");
             }
         
         Grabar.Close();
@@ -1396,7 +1412,7 @@ namespace TP_AGENCIA_DE_AUTOS
     internal class Auto_Camioneta : Vehiculo
     {
         //constructor
-        public Auto_Camioneta(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones, string color) : base(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color)
+        public Auto_Camioneta(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, string t_observaciones, string observaciones, string color) : base(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color)
         {
             this.Id_Vehiculo = id_vehiculo;
             this.Patente = patente;
@@ -1407,36 +1423,37 @@ namespace TP_AGENCIA_DE_AUTOS
             this.Id_segmento = id_segmento;
             this.Id_combustible = id_combustible;
             this.Precio_vta = precio_vta;
-            this.Tobservaciones = t_observaciones;
-            if (this.Tobservaciones)
-            {
-                this.Observaciones = observaciones;
-            }
-            else
-            {
-                this.Observaciones = " - ";
-            }
-            this.Color = color;
+        this.Tobservaciones = t_observaciones.ToUpper();
+
+        if (this.Tobservaciones == "SI")
+        {
+            this.Observaciones = observaciones;
+        }
+        else if (this.Tobservaciones == "NO")
+        {
+            this.Observaciones = " - ";
+        }
+        this.Color = color;
         }
 
-        //metodo
-        public override void MostrarDatos()
-        {
-            Console.WriteLine($"Id Vehiculo:{this.Id_Vehiculo} - Patente:{this.Patente} - Kilometro:{this.Kilometro} - Año:{this.Anio} - Id Marca:{this.Id_Marca} - Modelo:{this.Modelo} - Id Segmento:{this.Id_segmento} - Id Combustible:{this.Id_combustible} - Precio de venta:{this.Precio_vta} - Hay observaciones:", this.Tobservaciones ? "Si" : "No", $" - Observaciones:{this.Observaciones} - Color: {this.Color}.");
+    //metodo
+    public override void MostrarDatos()
+    {
+        Console.WriteLine($"Id Vehiculo:{this.Id_Vehiculo} - Patente:{this.Patente} - Kilometro:{this.Kilometro} - Año:{this.Anio} - Id Marca:{this.Id_Marca} - Modelo:{this.Modelo} - Id Segmento:{this.Id_segmento} - Id Combustible:{this.Id_combustible} - Precio de venta:{this.Precio_vta} - Hay observaciones: {this.Tobservaciones} - Observaciones: {this.Observaciones} - Color: {this.Color}.");
         }
 
         public override void Grabar()
         {
-            if (File.Exists("AutoCamionetas.xlsx"))
+            if (File.Exists("AutoCamionetas.csv"))
             {
-                File.Delete("AutoCamionetas.xlsx");
+                File.Delete("AutoCamionetas.csv");
             }
-            FileStream Archivo = new FileStream("AutoCamionetas.xlsx", FileMode.Create);
+            FileStream Archivo = new FileStream("AutoCamionetas.csv", FileMode.Create);
             StreamWriter Grabar = new StreamWriter(Archivo);
 
             foreach (Auto_Camioneta item in Lista_AutoCamionetas)
             {
-                Grabar.WriteLine($"{this.Id_Vehiculo};{this.Patente};{this.Kilometro};{this.Anio};{this.Id_Marca};{this.Modelo};{this.Id_segmento};{this.Id_combustible};{this.Precio_vta};{this.Tobservaciones};{this.Observaciones};{this.Color}");
+                Grabar.WriteLine($"{this.Id_Vehiculo},{this.Patente},{this.Kilometro},{this.Anio},{this.Id_Marca},{this.Modelo},{this.Id_segmento},{this.Id_combustible},{this.Precio_vta},{this.Tobservaciones},{this.Observaciones},{this.Color}");
             }
 
             Grabar.Close();
@@ -1451,13 +1468,13 @@ namespace TP_AGENCIA_DE_AUTOS
     internal class Camion : Vehiculo
     {
         //prop priv
-        private bool caja_carga;
+        private bool caja_car;
         private string dimension_caja;
         private int carga_max;
 
 
         //constructor
-        public Camion(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones, string color, bool caja_carga, string dimension_caja, int carga_max) : base(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color)
+        public Camion(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, string t_observaciones, string observaciones, string color, string caja_carga, string dimension_caja, int carga_max) : base(id_vehiculo, patente, kilometro, anio, id_marca, modelo, id_segmento, id_combustible, precio_vta, t_observaciones, observaciones, color)
         {
             this.Id_Vehiculo = id_vehiculo;
             this.Patente = patente;
@@ -1468,38 +1485,50 @@ namespace TP_AGENCIA_DE_AUTOS
             this.Id_segmento = id_segmento;
             this.Id_combustible = id_combustible;
             this.Precio_vta = precio_vta;
-            this.Tobservaciones = t_observaciones;
-            if (this.Tobservaciones)
+            
+            this.Tobservaciones = t_observaciones.ToUpper();
+             
+            if (this.Tobservaciones=="SI")
             {
                 this.Observaciones = observaciones;
             }
-            else
+            else if(this.Tobservaciones == "NO")
             {
                 this.Observaciones = " - ";
             }
             this.Color = color;
-            this.Caja_carga = caja_carga;
+
+            if (caja_carga.ToUpper() == "SI")
+            {
+                this.Caja_carga= true;
+            }
+
+            else
+            {
+                this.Caja_carga = false;
+            }
+        
             this.Dimension_caja = dimension_caja;
             this.Carga_max = carga_max;
         }
 
-        //metod
-        public override void MostrarDatos()
-        {
-            Console.WriteLine($"Id Vehiculo:{this.Id_Vehiculo} - Patente:{this.Patente} - Kilometro:{this.Kilometro} - Año:{this.Anio} - Id Marca:{this.Id_Marca} - Modelo:{this.Modelo} - Id Segmento:{this.Id_segmento} - Id Combustible:{this.Id_combustible} - Precio de venta:{this.Precio_vta} - Hay observaciones:", this.Tobservaciones ? "Si" : "No", $" - Observaciones:{this.Observaciones} - Color: {this.Color} - Caja de carga:{this.Caja_carga} - Dimension:{this.Dimension_caja} - Carga maxima:{this.Carga_max}.");
+    //metod
+    public override void MostrarDatos()
+    {
+        Console.WriteLine($"Id Vehiculo:{this.Id_Vehiculo} - Patente:{this.Patente} - Kilometro:{this.Kilometro} - Año:{this.Anio} - Id Marca:{this.Id_Marca} - Modelo:{this.Modelo} - Id Segmento:{this.Id_segmento} - Id Combustible:{this.Id_combustible} - Precio de venta:{this.Precio_vta} - Hay observaciones:{this.Tobservaciones} - Observaciones:{this.Observaciones} - Color: {this.Color} - Caja de carga:{this.Caja_carga} - Dimension:{this.Dimension_caja} - Carga maxima:{this.Carga_max}.");
         }
     public override void Grabar()
     {
-        if (File.Exists("Camiones.xlsx"))
+        if (File.Exists("Camiones.csv"))
         {
-            File.Delete("Camiones.xlsx");
+            File.Delete("Camiones.csv");
         }
-        FileStream Archivo = new FileStream("Camiones.xlsx", FileMode.Create);
+        FileStream Archivo = new FileStream("Camiones.csv", FileMode.Create);
         StreamWriter Grabar = new StreamWriter(Archivo);
 
         foreach (Camion item in Lista_Camiones)
         {
-            Grabar.WriteLine($"{this.Id_Vehiculo};{this.Patente};{this.Kilometro};{this.Anio};{this.Id_Marca};{this.Modelo};{this.Id_segmento};{this.Id_combustible};{this.Precio_vta};{this.Tobservaciones};{this.Observaciones};{this.Color};{this.Caja_carga};{this.Dimension_caja};{this.Carga_max}");
+            Grabar.WriteLine($"{this.Id_Vehiculo},{this.Patente},{this.Kilometro},{this.Anio},{this.Id_Marca},{this.Modelo},{this.Id_segmento},{this.Id_combustible},{this.Precio_vta},{this.Tobservaciones},{this.Observaciones},{this.Color},{this.Caja_carga},{this.Dimension_caja},{this.Carga_max}");
         }
 
         Grabar.Close();
@@ -1510,8 +1539,8 @@ namespace TP_AGENCIA_DE_AUTOS
     //get set
     public bool Caja_carga
         {
-            get { return this.caja_carga; }
-            set { this.caja_carga = value; }
+            get { return this.caja_car; }
+            set { this.caja_car = value; }
         }
         public string Dimension_caja
         {

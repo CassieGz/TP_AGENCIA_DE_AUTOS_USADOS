@@ -220,10 +220,15 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ReadKey();
 
                             string valor = CRUD[posicion];
+<<<<<<< HEAD
                             Vehiculo oVehiculo = new Vehiculo(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo");
                             Ventas ventas =new Ventas();
                             
 
+=======
+                            Vehiculo oVehiculo = new Vehiculo(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo");
+                            oVehiculo.Carga();
+>>>>>>> da3ed3cb77535bf1a1116fb5e42c7e37dd0f07e8
                             switch (opcion)
                             {
                                 case "Vehículos":
