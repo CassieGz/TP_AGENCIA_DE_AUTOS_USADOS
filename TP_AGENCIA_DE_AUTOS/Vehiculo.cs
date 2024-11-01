@@ -77,7 +77,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 while (!Leer.EndOfStream)
                 {
                     string cadena = Leer.ReadLine();
-                    string[] datos = cadena.Split(',');
+                    string[] datos = cadena.Split(';');
 
                     //trim para eliminar el primer y ultimo caracteres o los que se coloquen entre ()
                     Moto oMoto = new Moto(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), short.Parse(datos[3]), int.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), float.Parse(datos[8]), datos[9], datos[10], datos[11], datos[12]);
@@ -95,7 +95,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 while (!Lee.EndOfStream)
                 {
                     string cadena = Lee.ReadLine();
-                    string[] datos = cadena.Split(',');
+                    string[] datos = cadena.Split(';');
                     Auto_Camioneta oAutoCam = new Auto_Camioneta(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), short.Parse(datos[3]), int.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), float.Parse(datos[8]), datos[9], datos[10], datos[11]);
                     Lista_AutoCamionetas.Add(oAutoCam);
                 }
@@ -110,7 +110,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 while (!Read.EndOfStream)
                 {
                     string cadena = Read.ReadLine();
-                    string[] datos = cadena.Split(',');
+                    string[] datos = cadena.Split(';');
                     Camion oCamion = new Camion(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), short.Parse(datos[3]), int.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), float.Parse(datos[8]), datos[9], datos[10], datos[11], datos[12], datos[13], int.Parse(datos[14]));
                     Lista_Camiones.Add(oCamion);
                 }
