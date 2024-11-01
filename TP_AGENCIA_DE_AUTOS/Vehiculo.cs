@@ -28,7 +28,9 @@ namespace SistemaGestion
 
         //
 
-        public Vehiculo(int id_vehiculo, string patente, int kilometro, short anio, int id_marca, string modelo, int id_segmento, int id_combustible, float precio_vta, bool t_observaciones, string observaciones)
+        public Vehiculo(int id_vehiculo, string patente, int kilometro, short anio, int id_marca,
+                        string modelo, int id_segmento, int id_combustible, float precio_vta,
+                        bool t_observaciones, string observaciones)
         {
             this.Id_Vehiculo = id_vehiculo;
             this.Patente = patente;

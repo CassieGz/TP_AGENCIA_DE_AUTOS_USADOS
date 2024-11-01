@@ -8,14 +8,15 @@ namespace TP_AGENCIA_DE_AUTOS
 {
     internal class Ventas
     {
-        private int IdCli;
-        private int IdVeh;
-        private DateTime FecCompra;
-        private DateTime FecEntrega;
-        private double SubT;
-        private double Iva;
-        private double Desc;
-        private double Total;
+        private int id_cli;
+        private int id_veh;
+        private DateTime fec_compra;
+        private DateTime fec_entrega;
+        private double sub_t;
+        private double iva;
+        private double desc;
+        private double total;
+        private static List<Ventas> listaVentas = new List<Ventas>();
 
         public Ventas()
         {
@@ -23,21 +24,24 @@ namespace TP_AGENCIA_DE_AUTOS
         public Ventas(int idcliente, int idvehiculo, DateTime fechacompra, DateTime fechaentrega,
                       double subtotal, double iva, double descuento, double total)
         {
-            this.IdCli = idcliente;
-            this.IdVeh = idvehiculo;
-            this.FecCompra = fechacompra;
-            this.FecEntrega = fechaentrega;
-            this.SubT = subtotal;
-            this.Iva = iva;
-            this.Desc = descuento;
-            this.Total = total;
+            if (fechacompra > fechaentrega)
+                throw new ArgumentException("La fecha de compra no puede ser posterior a la fecha de entrega.");
+
+            this.id_cli = idcliente;
+            this.id_veh = idvehiculo;
+            this.fec_compra = fechacompra;
+            this.fec_entrega = fechaentrega;
+            this.sub_t = subtotal;
+            //this.Iva = iva;
+            //this.Desc = descuento;
+           // this.Total = total;
         }
-        public int IdClientes
+        public int IdCli
         {
             get { return this.IdCli; }
             set { this.IdCli = value; }
         }
-        public int IdVehiculo
+        public int IdVeh
         {
             get { return this.IdVeh; }
             set { this.IdVeh = value; }
@@ -55,22 +59,27 @@ namespace TP_AGENCIA_DE_AUTOS
         public double SubTotal
         {
             get { return this.SubTotal; }
-            set { this.SubTotal = value; }
+           // set { this.SubTotal = value; }
         }
-        public double iva
+        //propiedades de solo lectura
+        public double Iva
         {
-            get { return this.iva; }
-            set { this.iva = value; }
+            get { return (SubTotal - Desc) * (Iva / 100); }
+        
+            //get { return this.iva; }
+            //set { this.iva = value; }
         }
-        public double Descuento
+        public double Desc
         {
-            get { return this.Desc; }
-            set { this.Desc = value; }
+            get { return SubTotal * (desc / 100); }
+            //get { return this.Desc; }
+            //set { this.Desc = value; }
         }
-        public double total
+        public double Total
         {
-            get { return this.total; }
-            set { this.total = value; }
+            get { return (SubTotal - Desc) + Iva; }
+           // get { return this.total; }
+            //set { this.total = value; }
         }
         private void Mostrarventas()
         {
@@ -110,7 +119,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
             Ventas nuevaVenta = new Ventas(idcliente, idvehiculo, fechacompra, fechaentrega, subtotal, iva,
                                            descuento, total);
-            //listaVentas.Add(nuevaVenta);
+            listaVentas.Add(nuevaVenta);
 
             Console.WriteLine("¡Venta agregada con éxito!");
         }
@@ -118,7 +127,10 @@ namespace TP_AGENCIA_DE_AUTOS
 
         private void EliminarVentas()
         {
-            Ventas venta = listaVentas.Find(v => v.IdCli == idcliente);
+            Console.WriteLine("Ingrese ID de cliente de la venta a eliminar:");
+            int idClienteAEliminar = int.Parse(Console.ReadLine());
+    
+            Ventas venta = listaVentas.Find(v => v.IdCli == IdCli);
             if (venta != null)
             {
                 listaVentas.Remove(venta);
@@ -131,7 +143,10 @@ namespace TP_AGENCIA_DE_AUTOS
         }
         private void Actualizarventas()
         {
-            Ventas ventas = listaVentas.Find(v => v.IdCli == idcliente);
+            Console.WriteLine("Ingrese ID de cliente de la venta a actualizar:");
+            int idClienteAActualizar = int.Parse(Console.ReadLine());
+
+            Ventas ventas = listaVentas.Find(v => v.IdCli == IdCli);
             if (ventas != null)
             {
                 Console.WriteLine("Actualizar los datos de la venta:");
@@ -145,11 +160,11 @@ namespace TP_AGENCIA_DE_AUTOS
                 double nuevoDescuento = double.Parse(Console.ReadLine());
                 double nuevoTotal = nuevoSubtotal + nuevoIVA - nuevoDescuento;
 
-                ventas.FecEntrega = nuevaFechaEntrega;
-                ventas.SubT = nuevoSubtotal;
-                ventas.Iva = nuevoIVA;
-                ventas.Desc = nuevoDescuento;
-                ventas.Total = nuevoTotal;
+                ventas.fec_entrega = nuevaFechaEntrega;
+                ventas.sub_t= nuevoSubtotal;
+                //ventas.Iva = nuevoIVA;
+                //ventas.Desc = nuevoDescuento;
+                //ventas.Total = nuevoTotal;
 
                 Console.WriteLine("¡Venta actualizada con éxito!");
             }
@@ -161,9 +176,21 @@ namespace TP_AGENCIA_DE_AUTOS
         }
         public void listarventas()
         {
-            
+            Console.WriteLine("|======================================================================|");
+            Console.WriteLine("|  ID  |   Cliente   |   Vehiculo   |  Fecha Compra  |  Fecha Entrega  |");
+            Console.WriteLine("|======================================================================|");
+            Console.WriteLine("|     Subtotal     |    IVA    |     Descuento     |       Total       |");
+            Console.WriteLine("|======================================================================|");
+
+            foreach (Ventas ventas in listaVentas)
+            {
+                Console.WriteLine($"ID: {this.IdCli},Cliente:," + $"Vehiculo: {this.id_veh}, " + 
+                                  $"Fecha Compra: {this.fec_compra}, " +
+                                  $"Fecha Entrega: {this.fec_entrega}, " + $"Subtotal: {this.SubTotal}," +
+                                  $" IVA: {this.iva}"+ $"Descuento: {this.Desc}" + $"Total:{this.Total}");
+            }
         }
-
-
     }
 }
+    
+
