@@ -134,10 +134,10 @@ namespace TP_AGENCIA_DE_AUTOS
                 this.segments.Add(Segment); 
             }
 
-            for (int i = 0; i < Math.Min(2, this.segments.Count); i++)
-            {
-                Console.WriteLine("ID Segmento[0] Segmento",)
-            }   
+            //for (int i = 0; i < Math.Min(2, this.segments.Count); i++)
+            //{
+            //    Console.WriteLine("ID Segmento[0] Segmento",)
+            //}   
 
             Archivo.Close();
             Leer.Close();
