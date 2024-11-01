@@ -33,7 +33,7 @@ namespace TP_AGENCIA_DE_AUTOS
         //-------------------------SEGMENTOS-------------------------
         public void CargarSegmentos()
         {
-            FileStream Archivo = new FileStream("Combustibles.csv", FileMode.Open);
+            FileStream Archivo = new FileStream("Segmentos.csv", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
             bool error;
