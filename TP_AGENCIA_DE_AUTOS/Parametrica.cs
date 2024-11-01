@@ -33,7 +33,7 @@ namespace TP_AGENCIA_DE_AUTOS
         //-------------------------SEGMENTOS-------------------------
         public void CargarSegmentos()
         {
-            FileStream Archivo = new FileStream("SEGMENTOS.xlsx", FileMode.Open);
+            FileStream Archivo = new FileStream("Combustibles.csv", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
             while (!Leer.EndOfStream)
@@ -43,19 +43,18 @@ namespace TP_AGENCIA_DE_AUTOS
                 Segmento Segment = new Segmento(int.Parse(datos[0]), datos[1]);
                 this.segments.Add(Segment);
             }
-
-            //for (int i = 0; i < Math.Min(2, this.segments.Count); i++)
-            //{
-            //    Console.WriteLine("ID Segmento[0] Segmento",)
-            //}   
-          
-            for (int i = 0; i < Math.Min(2, this.segments.Count); i++)
-            {
-                Console.WriteLine("ID Segmento[0] Segmento");
-            }
-
             Archivo.Close();
             Leer.Close();
+
+            Console.WriteLine("┌─────────────┬───────────────────────────────────┐");
+            Console.WriteLine("│ ID          │ SEGMENTO                          │");
+            Console.WriteLine("└─────────────┴───────────────────────────────────┘");
+            for (int i = 0; i < Math.Min(2, this.segments.Count); i++)
+            {
+                Console.WriteLine($"{segments[i].Id_Segmento} {segments[i].NombreSeg}");
+            }
+
+           
         }
 
         //CRUD Segmento
@@ -146,7 +145,7 @@ namespace TP_AGENCIA_DE_AUTOS
         //-------------------------COMBUSTIBLES-------------------------
         public void CargarCombustibles()
         {
-            FileStream Archivo = new FileStream("COMBUSTIBLES.xlsx", FileMode.Open);
+            FileStream Archivo = new FileStream("Combustibles.csv", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
             while (!Leer.EndOfStream)
@@ -171,7 +170,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
         public void CargarProvincias()
         {
-            FileStream Archivo = new FileStream("PROVINCIAS.xlsx", FileMode.Open);
+            FileStream Archivo = new FileStream("Provincias.csv", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
             while (!Leer.EndOfStream)
@@ -198,7 +197,7 @@ namespace TP_AGENCIA_DE_AUTOS
         //-------------------------LOCALIDADES-------------------------
         public void CargarLocalidades()
         {
-            FileStream Archivo = new FileStream("LOCALIDADES.xlsx", FileMode.Open);
+            FileStream Archivo = new FileStream("Localidades.csv", FileMode.Open);
             StreamReader Leer = new StreamReader(Archivo);
 
             while (!Leer.EndOfStream)
