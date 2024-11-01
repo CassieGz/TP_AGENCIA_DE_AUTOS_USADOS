@@ -12,6 +12,7 @@ namespace TP_AGENCIA_DE_AUTOS
     {
         static void Main(string[] args)
         {
+
             Console.CursorVisible = false;
             int anchoConsola = Console.WindowWidth;
 
@@ -220,7 +221,9 @@ namespace TP_AGENCIA_DE_AUTOS
 
                             string valor = CRUD[posicion];
                             Vehiculo oVehiculo = new Vehiculo(0, " ", 0, 2000, 1, " ", 1, 1, 5000, false, " - ", "Rojo");
+                            Ventas ventas =new Ventas();
                             
+
                             switch (opcion)
                             {
                                 case "Vehículos":
@@ -245,20 +248,26 @@ namespace TP_AGENCIA_DE_AUTOS
                                             break;
                                     }
                                     break;
+
                                 case "Clientes":
                                     //aca cargar lista
+                                    
                                     switch (valor)
                                     {
                                         case "Agregar":
                                             //metodo agregar de clientes
+                                            
                                             break;
                                         case "Listar":
+                                            
                                             break;
                                         case "Actualizar":
                                             //metodo actualizar de clientes
+                                            
                                             break;
                                         case "Eliminar":
                                             //metodo eliminar de clientes
+                                            
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");
@@ -268,18 +277,23 @@ namespace TP_AGENCIA_DE_AUTOS
 
                                 case "Ventas":
                                     //aca cargar lista
+                                    
                                     switch (valor)
                                     {
                                         case "Agregar":
                                             //metodo agregar de ventas
+                                            ventas.Agregarventas();
                                             break;
                                         case "Listar":
+                                            ventas.listarventas();
                                             break;
                                         case "Actualizar":
                                             //metodo actualizar de ventas
+                                           // ventas.Actualizarventas();
                                             break;
                                         case "Eliminar":
                                             //metodo eliminar de ventas
+                                           // ventas.EliminarVentas();
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");

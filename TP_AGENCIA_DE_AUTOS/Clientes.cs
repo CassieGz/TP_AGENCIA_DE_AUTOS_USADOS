@@ -84,7 +84,7 @@ namespace TP_AGENCIA_DE_AUTOS
             get { return this.correo; }
             set { this.correo = value; }
         }
-        private void Mostrarclientes()
+        public void Mostrarclientes()
         {
             Console.WriteLine("|===========================================================|");
 
@@ -98,7 +98,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
             Console.WriteLine("\n");
         }
-        private static void Agregarclientes()
+        public void Agregarclientes()
         {
             Console.WriteLine("Agregar un cliente");
             Console.WriteLine("Ingrese Id:");
@@ -120,7 +120,7 @@ namespace TP_AGENCIA_DE_AUTOS
             listaClientes.Add(nuevoCliente);
         }
 
-        private static void EliminarClientes(int id)
+        public void EliminarClientes(int id)
         {
             Clientes cliente = listaClientes.Find(c => c.idcli == id);
             if (cliente != null)
@@ -135,7 +135,7 @@ namespace TP_AGENCIA_DE_AUTOS
             Console.ReadKey();
         }
 
-        private static void ActualizarClientes(int id)
+        public void ActualizarClientes(int id)
         {
             Clientes clientes = listaClientes.Find(c => c.idcli == id);
             if (clientes != null)
@@ -160,7 +160,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 Console.WriteLine("Cliente no encontrado.");
             }
         }
-        public static void ListarClientes()
+        public void ListarClientes()
         {
             Console.WriteLine("|===========================================================|");
             Console.WriteLine("|ID   | Cliente     |  CUIT     | Localidad     | Telefono  |");

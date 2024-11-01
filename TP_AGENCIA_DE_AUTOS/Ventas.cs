@@ -81,7 +81,7 @@ namespace TP_AGENCIA_DE_AUTOS
            // get { return this.total; }
             //set { this.total = value; }
         }
-        private void Mostrarventas()
+        public void Mostrarventas()
         {
             Console.WriteLine("|======================================================================|");
 
@@ -95,7 +95,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
             Console.WriteLine("\n");
         }
-        private void Agregarventas()
+        public void Agregarventas()
         {
             Console.WriteLine("Agregar una venta");
             Console.WriteLine("-----------------");
@@ -125,12 +125,12 @@ namespace TP_AGENCIA_DE_AUTOS
         }
 
 
-        private void EliminarVentas()
+        public void EliminarVentas(int idcli)
         {
             Console.WriteLine("Ingrese ID de cliente de la venta a eliminar:");
             int idClienteAEliminar = int.Parse(Console.ReadLine());
     
-            Ventas venta = listaVentas.Find(v => v.IdCli == IdCli);
+            Ventas venta = listaVentas.Find(v => v.IdCli == idcli);
             if (venta != null)
             {
                 listaVentas.Remove(venta);
@@ -141,12 +141,12 @@ namespace TP_AGENCIA_DE_AUTOS
                 Console.WriteLine("No se encontró una venta con ese ID de cliente.");
             }
         }
-        private void Actualizarventas()
+        public void Actualizarventas(int idcli)
         {
             Console.WriteLine("Ingrese ID de cliente de la venta a actualizar:");
             int idClienteAActualizar = int.Parse(Console.ReadLine());
 
-            Ventas ventas = listaVentas.Find(v => v.IdCli == IdCli);
+            Ventas ventas = listaVentas.Find(v => v.IdCli == idcli);
             if (ventas != null)
             {
                 Console.WriteLine("Actualizar los datos de la venta:");
@@ -184,10 +184,10 @@ namespace TP_AGENCIA_DE_AUTOS
 
             foreach (Ventas ventas in listaVentas)
             {
-                Console.WriteLine($"ID: {this.IdCli},Cliente:," + $"Vehiculo: {this.id_veh}, " + 
-                                  $"Fecha Compra: {this.fec_compra}, " +
-                                  $"Fecha Entrega: {this.fec_entrega}, " + $"Subtotal: {this.SubTotal}," +
-                                  $" IVA: {this.iva}"+ $"Descuento: {this.Desc}" + $"Total:{this.Total}");
+                Console.WriteLine($"ID: {ventas.IdCli},Cliente:" + $"Vehiculo: {ventas.id_veh}, " + 
+                                  $"Fecha Compra: {ventas.fec_compra}, " +
+                                  $"Fecha Entrega: {ventas.fec_entrega}, " + $"Subtotal: {ventas.SubTotal}," +
+                                  $" IVA: {ventas.iva}"+ $"Descuento: {ventas.Desc}" + $"Total:{ventas.Total}");
             }
         }
     }
