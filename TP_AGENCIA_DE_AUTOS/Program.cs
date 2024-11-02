@@ -255,17 +255,17 @@ namespace TP_AGENCIA_DE_AUTOS
 
                                 case "Clientes":
                                     //aca cargar lista
-                                    List<Cliente> listaClientes = new List<Cliente>();
+                                    List<Cliente> listaCliente = new List<Cliente>();
                                     Cliente oCliente = new Cliente(); 
 
                                     switch (valor)
                                     {
                                         case "Agregar":
                                             //metodo agregar de clientes
-                                            oCliente.AgregarCliente();
+                                            oCliente.AgregarClientes();
                                             break;
                                         case "Listar":
-                                            oCliente.ListarClientes(listaClientes);
+                                            oCliente.ListarClientes();
                                             break;
                                         case "Actualizar":
                                             //metodo actualizar de clientes
@@ -277,7 +277,7 @@ namespace TP_AGENCIA_DE_AUTOS
                                             //metodo eliminar de clientes
                                             Console.WriteLine("Ingrese ID del cliente a eliminar:");
                                             int idClienteEliminar = int.Parse(Console.ReadLine());
-                                            oCliente.EliminarCliente(idClienteEliminar);
+                                            oCliente.EliminarClientes(idClienteEliminar);
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");
