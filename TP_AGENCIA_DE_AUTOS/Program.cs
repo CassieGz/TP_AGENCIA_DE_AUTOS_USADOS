@@ -122,10 +122,10 @@ namespace TP_AGENCIA_DE_AUTOS
                                     break;
                                 case "Ventas":
                                     instanciaProg.MostrarSubMenu(Menu[posicion].Trim());
-                                    
+
                                     break;
                                 case "Paramétricas":
-                                    instanciaProg.MostrarSubmenuParametricas();
+                                    instanciaProg.MostrarSubmenuParametricas();     
                                     break;
                                 default:
                                     Console.WriteLine("Opción inválida");
@@ -188,7 +188,6 @@ namespace TP_AGENCIA_DE_AUTOS
                     Console.Write(CRUD[i]);
                     Console.ResetColor();
                 }
-                //Console.WriteLine("\n──────────────────────────────────────────────");
 
                 tecla = Console.ReadKey();
 
@@ -220,7 +219,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ReadKey();
 
                             string valor = CRUD[posicion];
-                            Ventas ventas =new Ventas();
+                            Ventas ventas = new Ventas();
 
 
                             Vehiculo oVehiculo = new Vehiculo(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo");
@@ -231,7 +230,7 @@ namespace TP_AGENCIA_DE_AUTOS
                             switch (opcion)
                             {
                                 case "Vehículos":
-                                    //aca cargar listas
+
                                     switch (valor)
                                     {
                                         //-----HACER PARA CADA VEHICULO-----
@@ -255,23 +254,23 @@ namespace TP_AGENCIA_DE_AUTOS
 
                                 case "Clientes":
                                     //aca cargar lista
-                                    
+
                                     switch (valor)
                                     {
                                         case "Agregar":
                                             //metodo agregar de clientes
-                                            
+
                                             break;
                                         case "Listar":
-                                            
+
                                             break;
                                         case "Actualizar":
                                             //metodo actualizar de clientes
-                                            
+
                                             break;
                                         case "Eliminar":
                                             //metodo eliminar de clientes
-                                            
+
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");
@@ -281,7 +280,7 @@ namespace TP_AGENCIA_DE_AUTOS
 
                                 case "Ventas":
                                     //aca cargar lista
-                                    
+
                                     switch (valor)
                                     {
                                         case "Agregar":
@@ -293,11 +292,11 @@ namespace TP_AGENCIA_DE_AUTOS
                                             break;
                                         case "Actualizar":
                                             //metodo actualizar de ventas
-                                           // ventas.Actualizarventas();
+                                            // ventas.Actualizarventas();
                                             break;
                                         case "Eliminar":
                                             //metodo eliminar de ventas
-                                           //ventas.EliminarVentas();
+                                            //ventas.EliminarVentas();
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");
@@ -319,7 +318,7 @@ namespace TP_AGENCIA_DE_AUTOS
         //Submenú Paramétricas
         public void MostrarSubmenuParametricas()
         {
-            string[] SubMenuParametricas = { "Marcas\n", "Segmentos\n", "Combustibles\n","Provincias\n","Localidades\n","Volver\n" };
+            string[] SubMenuParametricas = { "Marcas\n", "Segmentos\n", "Combustibles\n", "Provincias\n", "Localidades\n", "Volver\n" };
             int posicion = 0; //posición actual
 
             Console.CursorVisible = false;
@@ -406,7 +405,7 @@ namespace TP_AGENCIA_DE_AUTOS
                                     parametric.ListarProvincias();
                                     break;
                                 case "Localidades":
-                                    parametric.CargarLocalidades();
+                                    parametric.CargarLocalidades(); 
                                     parametric.ListarLocalidades();
                                     break;
 
@@ -466,7 +465,7 @@ namespace TP_AGENCIA_DE_AUTOS
                     Console.Write(CRUD_Parametrica[i]);
                     Console.ResetColor();
                 }
-                //Console.WriteLine("\n──────────────────────────────────────────────");
+
 
                 tecla = Console.ReadKey();
 
@@ -497,61 +496,44 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ResetColor();
                             Console.ReadKey();
 
+
+                            string valor = CRUD_Parametrica[posicion].Trim();
+                            Program objProg = new Program();
                             
-                            string valor = CRUD_Parametrica[posicion];
-                            Parametrica parametric = new Parametrica();
-                            Marca oMarca = new Marca(1, " "); 
+                            //Marca oMarca = new Marca(1, " ");
+                            //oMarca.CargarMarca();
                             switch (eleccion)
                             {
                                 case "Marcas":
-                                    oMarca.CargarMarca();
-                                    switch (valor)
-                                    {
-                                        //-----HACER PARA CADA MARCA-----
-                                        case "Agregar":
-                                            oMarca.Agregar();
-                                            break;
-                                        case "Listar":
-                                            oMarca.Leer();
-                                            break;
-                                        case "Actualizar":
-                                            oMarca.Modificar();
-                                            break;
-                                        case "Eliminar":
-                                            oMarca.Eliminar();
-                                            break;
-                                        default:
-                                            Console.WriteLine("Opción inválida");
-                                            break;
-                                    }
-                                    break;
+
+                                    //switch (valor)
+                                    //{
+                                    //    //-----HACER PARA CADA MARCA-----
+                                    //    case "Agregar":
+                                    //        oMarca.Agregar();
+                                    //    break;
+                                    //    case "Listar":
+                                    //        oMarca.Leer();
+                                    //    break;
+                                    //    case "Actualizar":
+                                    //        oMarca.Modificar();
+                                    //    break;
+                                    //    case "Eliminar":
+                                    //        oMarca.Eliminar();
+                                    //    break;
+                                    //    default:
+                                    //        Console.WriteLine("Opción inválida");
+                                    //    break;
+                                    //}
+                                break;
+
                                 case "Segmentos":
-                                    parametric.CargarSegmentos();
-                                    Segmento seg = new Segmento();
-                                    parametric.Mostrar3seg();
-                                    switch (valor)
-                                    {
-                                        case "Agregar":
-                                            parametric.AgregarSegmento();
-                                            break;
-                                        case "Listar":
-                                            seg.MostrarSegmentos();
-                                            break;
-                                        case "Actualizar":
-                                            parametric.ActualizarSegmento();    
-                                            break;
-                                        case "Eliminar":
-                                            parametric.EliminarSegmento();  
-                                            break;
-                                        default:
-                                            Console.WriteLine("Opción inválida");
-                                            break;
-                                    }
-                                    break;
-                                
+                                    objProg.CRUD_Seg(valor);
+                                break;
                             }
 
                         }
+
                     break;
                 }
 
@@ -559,7 +541,33 @@ namespace TP_AGENCIA_DE_AUTOS
             }
         }
 
+        public void CRUD_Seg(string valor)
+        {
 
+            Parametrica p = new Parametrica();
+            p.CargarSegmentos();
+
+            switch (valor)
+            {
+                case "Agregar":
+                    p.AgregarSegmento();
+                    break;
+                case "Listar":
+                    p.ListarSegmentos();
+                    Console.ReadLine();
+                    break;
+                case "Actualizar":
+                    p.ActualizarSegmento();
+                    break;
+                case "Eliminar":
+                    p.EliminarSegmento();
+                    break;
+                default:
+                    Console.WriteLine("Opción i");
+                    break;
+            }
+
+        }
 
         //METODOS FUERA DEL MAIN
 
