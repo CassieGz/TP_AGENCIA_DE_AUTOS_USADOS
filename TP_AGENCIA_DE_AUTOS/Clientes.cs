@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using system.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.IO;
+
 
 namespace TP_AGENCIA_DE_AUTOS
 {
@@ -18,11 +15,9 @@ namespace TP_AGENCIA_DE_AUTOS
         private long telefonos;
         private string correo;
         private static List<Clientes> listaClientes = new List<Clientes>();
+      
+        public Clientes() { }
 
-        public Clientes()
-        {
-
-        }
         public Clientes(int idclientes, string cliente, long cuit, string domicilio,
                         int idlocalidad, long telefonos, string correo)
         {
@@ -51,19 +46,14 @@ namespace TP_AGENCIA_DE_AUTOS
             {
                 if (!ValidateCUIT(value))
                 {
-                    throw new ArgumentException("Invalid CUIT format.");
+                    throw new ArgumentException("Cuit invalido");
                 }
                 this.cuit = value; 
             }
         }
         private bool ValidateCUIT(long cuit)
         {
-            if (cuit.ToString().Length != 11)
-            {
-                return false;
-            }
-            string cuitStr = cuit.ToString();
-            return Regex.IsMatch(cuitStr, @"^\d{2}-\d{8}-\d$");
+            return cuit.ToString().Length == 11;
         }
         public string Domicilio
         {
@@ -88,14 +78,17 @@ namespace TP_AGENCIA_DE_AUTOS
 
         public void CargarClientes()
         {
-            FileStream Archivo = new FileStream("clientes.csv", FileMode.Open);
-            StreamReader Leer = new StreamReader(Archivo);
+            using (FileStream Archivo = new FileStream("clientes.csv", FileMode.Open)) ;
+            using (StreamReader Leer = new StreamReader(Archivo)) ;
 
             while (!Leer.EndOfStream)
             {
                 string cadena = Leer.ReadLine();
                 string[] datos = cadena.Split(',');
-                Clientes cliente = Clientes(datos);
+                Clientes cliente = new Clientes(int.Parse(datos[0]),datos[1],
+                                                long.Parse(datos[2]),datos[3],
+                                                int.Parse(datos[4]),
+                                                long.Parse(datos[5]), datos[6]);
                 listaClientes.Add(cliente);
             }
             Archivo.Close();
@@ -115,6 +108,15 @@ namespace TP_AGENCIA_DE_AUTOS
             Console.WriteLine("|===========================================================|");
 
             Console.WriteLine("\n");
+
+            foreach (Clientes cliente in listaClientes)
+            {
+                Console.WriteLine($"| {cliente.IdCli,-5} | {cliente.Cli,-12} | " +
+                                  $"{cliente.Cuit,-11} |" + $" {cliente.IdLocalidad,-9} | " +
+                                  $"{cliente.Telefonos,-8} |");
+                Console.WriteLine($"| Domicilio: {cliente.Domicilio}, Correo: {cliente.Correo}");
+                Console.WriteLine("|--------------------------------------------------------|");
+            }
         }
         public void Agregarclientes()
         {
@@ -178,6 +180,7 @@ namespace TP_AGENCIA_DE_AUTOS
                 Console.WriteLine("Cliente no encontrado.");
             }
         }
+
         public void ListarClientes()
         {
             Console.WriteLine("|===========================================================|");

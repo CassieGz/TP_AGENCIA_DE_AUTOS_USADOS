@@ -219,7 +219,11 @@ namespace TP_AGENCIA_DE_AUTOS
                             Console.ReadKey();
 
                             string valor = CRUD[posicion];
+<<<<<<< HEAD
                             Ventas ventas = new Ventas();
+=======
+                            Venta ventas =new Venta();
+>>>>>>> 6e059d3209407c669410ca66a0362683fd961a30
 
 
                             Vehiculo oVehiculo = new Vehiculo(0, " ", 0, 2000, 1, " ", 1, 1, 5000, "NO", " - ", "Rojo");
@@ -254,11 +258,17 @@ namespace TP_AGENCIA_DE_AUTOS
 
                                 case "Clientes":
                                     //aca cargar lista
+<<<<<<< HEAD
+=======
+                                    List<Cliente> listaCliente = new List<Cliente>();
+                                    Cliente oCliente = new Cliente(); 
+>>>>>>> 6e059d3209407c669410ca66a0362683fd961a30
 
                                     switch (valor)
                                     {
                                         case "Agregar":
                                             //metodo agregar de clientes
+<<<<<<< HEAD
 
                                             break;
                                         case "Listar":
@@ -271,6 +281,24 @@ namespace TP_AGENCIA_DE_AUTOS
                                         case "Eliminar":
                                             //metodo eliminar de clientes
 
+=======
+                                            oCliente.AgregarClientes();
+                                            break;
+                                        case "Listar":
+                                            oCliente.ListarClientes();
+                                            break;
+                                        case "Actualizar":
+                                            //metodo actualizar de clientes
+                                            Console.WriteLine("Ingrese ID del cliente a actualizar:");
+                                            int idClienteActualizar = int.Parse(Console.ReadLine());
+                                            oCliente.ActualizarCliente(idClienteActualizar);
+                                            break;
+                                        case "Eliminar":
+                                            //metodo eliminar de clientes
+                                            Console.WriteLine("Ingrese ID del cliente a eliminar:");
+                                            int idClienteEliminar = int.Parse(Console.ReadLine());
+                                            oCliente.EliminarClientes(idClienteEliminar);
+>>>>>>> 6e059d3209407c669410ca66a0362683fd961a30
                                             break;
                                         default:
                                             Console.WriteLine("Opción inválida");
@@ -278,26 +306,44 @@ namespace TP_AGENCIA_DE_AUTOS
                                     }
                                     break;
 
-                                case "Ventas":
+                                case "Venta":
                                     //aca cargar lista
+<<<<<<< HEAD
 
+=======
+                                    List<Venta> listaVenta = new List<Venta>();
+                                    Venta oVenta = new Venta();
+>>>>>>> 6e059d3209407c669410ca66a0362683fd961a30
                                     switch (valor)
                                     {
                                         case "Agregar":
                                             //metodo agregar de ventas
-                                            ventas.Agregarventas();
+                                            oVenta.Agregarventa();
                                             break;
                                         case "Listar":
-                                            ventas.listarventas();
+                                            oVenta.Listarventa();
                                             break;
                                         case "Actualizar":
                                             //metodo actualizar de ventas
+<<<<<<< HEAD
                                             // ventas.Actualizarventas();
                                             break;
                                         case "Eliminar":
                                             //metodo eliminar de ventas
                                             //ventas.EliminarVentas();
+=======
+                                            Console.WriteLine("Ingrese ID de la venta a actualizar:");
+                                            int idVentaActualizar = int.Parse(Console.ReadLine());
+                                            oVenta.Actualizarventa(idVentaActualizar);
                                             break;
+                                        case "Eliminar":
+                                            //metodo eliminar de ventas
+                                            Console.WriteLine("Ingrese ID de la venta a eliminar:");
+                                            int idVentaEliminar = int.Parse(Console.ReadLine());
+                                            oVenta.EliminarVenta(idVentaEliminar); 
+>>>>>>> 6e059d3209407c669410ca66a0362683fd961a30
+                                            break;
+                                            
                                         default:
                                             Console.WriteLine("Opción inválida");
                                             break;
